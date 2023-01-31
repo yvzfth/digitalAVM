@@ -39,7 +39,7 @@ const Navbar = () => {
     setPathname(router.pathname);
   }, [router.pathname]);
   return (
-    <div className='fixed top-0 flex py-2 px-4 space-x-4 justify-around items-center bg-blue-700 w-full'>
+    <div className='fixed top-0 flex py-2 px-4 space-x-4 justify-around items-center bg-blue-700 w-full z-50'>
       <img className='w-20 md:w-28' src='logo.png' alt='' />
 
       <div className='relative rounded-md shadow-sm '>
