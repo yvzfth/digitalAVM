@@ -110,8 +110,8 @@ const CustomerCommentsContainer = () => {
       </div>
       <div className='text-[var(--primary-color)] text-center py-2 opacity-80'>
         {[...Array(comments.length)].map((e, i) => {
-          if (currentIndex === i) return <AdjustIcon />;
-          return <CircleOutlinedIcon />;
+          if (currentIndex === i) return <AdjustIcon key={i} />;
+          return <CircleOutlinedIcon key={i} />;
         })}
       </div>
     </div>
