@@ -8,7 +8,7 @@ const CityCard = ({
   citySrc: string;
 }) => {
   return (
-    <div className='group relative w-[20rem] h-[13rem] bg-black rounded-lg shadow-sm overflow-hidden transition-all duration-500'>
+    <div className='group relative w-[20rem] h-[13rem] bg-black rounded-xl shadow-xl overflow-hidden transition-all duration-500'>
       <img
         src={citySrc}
         className='opacity-80 w-[20rem] h-[13rem] rounded-lg group-hover:scale-[1.02] object-cover'

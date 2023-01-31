@@ -39,13 +39,13 @@ const Navbar = () => {
     setPathname(router.pathname);
   }, [router.pathname]);
   return (
-    <div className='fixed top-0 flex py-2 px-4 space-x-4 justify-around items-center bg-blue-700 w-full z-50'>
-      <img className='w-20 md:w-28' src='logo.png' alt='' />
+    <div className='fixed top-0 flex py-2 px-4 space-x-4 justify-around items-center bg-[var(--primary-color)] w-full z-50'>
+      <img className='w-16' src='logo.svg' alt='' />
 
       <div className='relative rounded-md shadow-sm '>
         <input
           id='search'
-          className='text-xs md:text-md py-2 pl-7 md:pl-10 w-full leading-3 md:leading-5 rounded-md transition duration-150 ease-in-out sm:text-sm'
+          className='text-xs md:text-md py-2 pl-6 md:pl-10 w-full leading-3 md:leading-5 rounded-md transition duration-150 ease-in-out sm:text-sm'
           placeholder="Dijital AVM'de ara"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
