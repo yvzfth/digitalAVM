@@ -71,13 +71,14 @@ const CityCardsContainer = () => {
           citySrc='http://jackroaming.com/wp-content/uploads/2021/11/Best-Things-to-do-in-Izmir-Turkey-featured-Izmir-Clock-Tower.jpg'
         />
       </div>
-      <div className='flex items-center justify-center gap-2 my-4'>
+      <div className='flex items-center justify-center gap-2 my-8'>
         {!city ? (
           <Button
             onClick={getLocation}
             color={'primary'}
+            sx={{ minHeight: 0, minWidth: 0, padding: '1rem' }}
             // to set button's extra padding resizable min-h and min-w
-            className='min-h-0 min-w-0 p-4 inline-block rounded-full'
+            className='inline-block rounded-full'
           >
             {status !== 'Locating...' ? (
               <LocationOn />
@@ -88,7 +89,8 @@ const CityCardsContainer = () => {
         ) : (
           <Button
             disabled
-            className='min-h-0 min-w-0 p-4 inline-block rounded-full'
+            sx={{ minHeight: 0, minWidth: 0, padding: '1rem' }}
+            className='inline-block rounded-full'
           >
             <WhereToVote />
           </Button>
@@ -96,7 +98,7 @@ const CityCardsContainer = () => {
 
         <CitySelect city={city!} handleSelectChange={handleSelectChange} />
       </div>
-      <hr className='border-gray-500 mx-10' />
+      {/* <hr className='border-gray-500 mx-10' /> */}
     </div>
   );
 };

@@ -4,7 +4,9 @@ import Brand from './Brand';
 const BrandsContainer = () => {
   return (
     <div className='space-y-4'>
-      <div className='text-center text-4xl py-4'>Popüler Markalar</div>
+      <div className='text-center text-4xl py-8 text-[var(--primary-color)] font-semibold'>
+        Popüler Markalar
+      </div>
       <div className='flex gap-6 w-full  animate-marquee '>
         <Brand brandSrc='https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Zara_Logo.svg/1200px-Zara_Logo.svg.png' />
         <Brand brandSrc='https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Zara_Logo.svg/1200px-Zara_Logo.svg.png' />
