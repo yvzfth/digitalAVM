@@ -91,9 +91,14 @@ const CityCardsContainer = () => {
           <Button
             onClick={getLocation}
             color={'primary'}
-            sx={{ minHeight: 0, minWidth: 0, padding: '1rem' }}
+            sx={{
+              minHeight: 0,
+              minWidth: 0,
+              padding: '1rem',
+              borderRadius: '100%',
+            }}
             // to set button's extra padding resizable min-h and min-w
-            className='inline-block rounded-full'
+            className='inline-block'
           >
             {status !== 'Locating...' ? (
               <LocationOn />
@@ -104,8 +109,13 @@ const CityCardsContainer = () => {
         ) : (
           <Button
             disabled
-            sx={{ minHeight: 0, minWidth: 0, padding: '1rem' }}
-            className='inline-block rounded-full'
+            sx={{
+              minHeight: 0,
+              minWidth: 0,
+              padding: '1rem',
+              borderRadius: '100%',
+            }}
+            className='inline-block'
           >
             <WhereToVote />
           </Button>
