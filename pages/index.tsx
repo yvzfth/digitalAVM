@@ -3,6 +3,10 @@ import Image from 'next/image';
 import { Inter } from '@next/font/google';
 // import styles from '@/styles/Home.module.css'
 import Navbar from 'components/Navbar';
+import CityCard from '@/components/CityCard';
+import CityCardsContainer from '@/components/CityCardsContainer';
+import BrandsContainer from '@/components/BrandsContainer';
+import Footer from '@/components/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,63 +21,11 @@ export default function Home() {
       </Head>
 
       <Navbar />
-      <main className='mt-20'>
-        <div className='w-80'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum sit
-          tempore exercitationem velit deserunt voluptatem eos perspiciatis a
-          quam, quod unde eaque minima, inventore nemo! Quaerat iure nihil quis
-          minus!
-        </div>
-
-        <div className='w-80'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum sit
-          tempore exercitationem velit deserunt voluptatem eos perspiciatis a
-          quam, quod unde eaque minima, inventore nemo! Quaerat iure nihil quis
-          minus!
-        </div>
-
-        <div className='w-80'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum sit
-          tempore exercitationem velit deserunt voluptatem eos perspiciatis a
-          quam, quod unde eaque minima, inventore nemo! Quaerat iure nihil quis
-          minus!
-        </div>
-
-        <div className='w-80'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum sit
-          tempore exercitationem velit deserunt voluptatem eos perspiciatis a
-          quam, quod unde eaque minima, inventore nemo! Quaerat iure nihil quis
-          minus!
-        </div>
-
-        <div className='w-80'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum sit
-          tempore exercitationem velit deserunt voluptatem eos perspiciatis a
-          quam, quod unde eaque minima, inventore nemo! Quaerat iure nihil quis
-          minus!
-        </div>
-
-        <div className='w-80'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum sit
-          tempore exercitationem velit deserunt voluptatem eos perspiciatis a
-          quam, quod unde eaque minima, inventore nemo! Quaerat iure nihil quis
-          minus!
-        </div>
-
-        <div className='w-80'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum sit
-          tempore exercitationem velit deserunt voluptatem eos perspiciatis a
-          quam, quod unde eaque minima, inventore nemo! Quaerat iure nihil quis
-          minus!
-        </div>
-
-        <div className='w-80'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum sit
-          tempore exercitationem velit deserunt voluptatem eos perspiciatis a
-          quam, quod unde eaque minima, inventore nemo! Quaerat iure nihil quis
-          minus!
-        </div>
+      <main className='mt-20 mb-10 divide-y'>
+        <CityCardsContainer />
+        <BrandsContainer />
       </main>
+      <Footer />
     </>
   );
 }
