@@ -1,15 +1,7 @@
 import React from 'react';
 import CityCard from './CityCard';
 import axios from 'axios';
-import {
-  Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  OutlinedInput,
-  Select,
-  SelectChangeEvent,
-} from '@mui/material';
+import { Button, SelectChangeEvent } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import { LocationOn, WhereToVote } from '@mui/icons-material';
 import cities from '@/lib/cities';
@@ -27,7 +19,19 @@ const CityCardsContainer = () => {
 
   const getLocation = () => {
     if (!navigator.geolocation) {
+      console.log('no service');
       setStatus('Geolocation is not supported by your browser');
+      setStatus('Locating...');
+      axios
+        .get(
+          `https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.ABSTRACTAPI_API_KEY}&fields=city`
+        )
+        .then((response: any) => {
+          setCity(cities[String(response.data.city)]);
+        })
+        .catch((error: any) => {
+          console.log(error);
+        });
     } else {
       setStatus('Locating...');
       navigator.geolocation.getCurrentPosition(
@@ -37,6 +41,17 @@ const CityCardsContainer = () => {
         },
         (err) => {
           setStatus(err.message);
+          setStatus('Locating...');
+          axios
+            .get(
+              `https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.ABSTRACTAPI_API_KEY}&fields=city`
+            )
+            .then((response: any) => {
+              setCity(cities[String(response.data.city)]);
+            })
+            .catch((error: any) => {
+              console.log(error);
+            });
         }
       );
     }
@@ -47,7 +62,7 @@ const CityCardsContainer = () => {
         setCity(
           await axios
             .get(
-              `https://us1.locationiq.com/v1/reverse.php?key=${process.env.LOCATION_IQ_ACCESS_TOKEN}&lat=41.0209782&lon=28.945227&format=json`
+              `https://us1.locationiq.com/v1/reverse.php?key=${process.env.LOCATION_IQ_ACCESS_TOKEN}&lat=${lat}&lon=${lon}&format=json`
             )
             .then((res) => res.data.address.city.toUpperCase())
         );

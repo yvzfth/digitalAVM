@@ -80,7 +80,7 @@ const Navbar = () => {
             onClick={handleClick}
             className='text-white p-0'
           >
-            <MenuIcon id='menuicon' className='text-4xl' />
+            <MenuIcon id='menuicon' className='text-4xl text-white' />
           </IconButton>
           <Menu
             id='long-menu'
