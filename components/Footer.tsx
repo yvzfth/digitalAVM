@@ -19,13 +19,13 @@ const Footer = () => {
             <img src='logo.svg' alt='' className='h-20' />
           </div>
           <div className='text-center text-gray-200'>
-            <div className='font-semibold'>Kurumsal</div>
+            <div className='font-semibold pb-2'>Kurumsal</div>
             <div>Hakkımızda</div>
             <div>İletişim</div>
             <div>S.S.S.</div>
           </div>
           <div className='text-center  text-gray-200'>
-            <div className='font-semibold'>Hızlı Linkler</div>
+            <div className='font-semibold pb-2'>Hızlı Linkler</div>
             <div>DigitalAVM</div>
             <div>DigiYemek</div>
           </div>
