@@ -15,14 +15,14 @@ const comments = [
     commentText:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem reprehenderit laboriosam non, ducimus ipsum error sequi quia animi quod ad, odit ex quasi recusandae magni quis aliquid voluptatibus facere velit? ',
     src: 'https://www.ajansinternet.com/uploads/2020/01/27/231508_92815ba1-0de2-464a-b8df-936d62f89ca0.jpeg',
-    rating: 5,
+    rating: 4.5,
   },
   {
     customerName: 'Suna',
     commentText:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla est praesentium debitis alias optio, quod fugit reprehenderit id quia doloribus facere aspernatur aliquam similique assumenda voluptates cum iusto corrupti laudantium! ',
     src: 'https://i.pinimg.com/originals/fe/b2/a8/feb2a8bc921e87c380f70d379722cf8b.jpg',
-    rating: 5,
+    rating: 3.7,
   },
   {
     customerName: 'Yücel',
