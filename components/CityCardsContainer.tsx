@@ -82,7 +82,7 @@ const CityCardsContainer = () => {
       style={{ backgroundImage: `url(${cityImages[city!]})` }}
       className={
         city
-          ? `w-full h-[25rem] sm:h-[35rem] md:h-[45rem] lg:h-[50rem] bg-cover bg-center`
+          ? `w-full h-[20rem] sm:h-[30rem] md:h-[40rem] lg:h-[50rem] bg-cover bg-center`
           : 'py-8'
       }
     >
