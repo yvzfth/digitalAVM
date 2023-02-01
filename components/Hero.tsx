@@ -11,14 +11,6 @@ declare module '@mui/material/styles' {
   }
 }
 
-// const theme = createTheme({
-
-//   palette: {
-//     primary: {
-//       main: 'rgb(13,25,152)',
-//     },
-
-// });
 const theme = createTheme({
   palette: {
     neutral: {
@@ -35,34 +27,31 @@ declare module '@mui/material/Button' {
 }
 const Hero = () => {
   return (
-    // <div
-    //   className='relative w-full h-[40rem] overflow-hidden p-[4rem] after:content-[""] after:absolute
-    // after:w-full after:h-[100%] after:bg-red-200
-    // after:rotate-[60deg] after:-z-10 after:top-0 after:left-0'
-    // >
-    // bg-[-webkit-linear-gradient(65deg, #A683E3 50%, #E4E9FD 50%)]
     <div
-      className='relative w-full h-[40rem] overflow-hidden p-[4rem] 
+      className='w-full h-[40rem] md:h-[44rem] overflow-hidden p-[4rem] 
     bg-hero-pattern
     '
     >
       <div className='text-center text-3xl md:text-4xl lg:text-5xl font-bold'>
         Aradığınız Ürün Gün İçinde Kapınızda
       </div>
-      <div className='absolute hidden md:block top-40 left-20 '>
-        <img src='ill-2-min.png' alt='' width={400} height={400} />
+      <div className='flex justify-evenly items-center mt-10'>
+        <div className='lg:-ml-28  '>
+          <img src='ill-2-min.png' alt='' width={400} height={300} />
+        </div>
+        <div className='lg:-ml-10 hidden lg:block '>
+          <img src='ill-4-min.png' alt='' width={250} height={300} />
+        </div>
+        <div className='hidden md:block '>
+          <img src='ill-3-min.png' alt='' width={250} height={250} />
+        </div>
       </div>
-      <div className='absolute top-44 md:top-32 md:right-20 md:translate-x-0 md:transform-none right-1/2 transform translate-x-1/2 mt-20 md:mt-0'>
-        <img src='ill-3-min.png' alt='' width={400} height={400} />
-      </div>
-      <div className='absolute hidden lg:block top-32 left-1/2 transform -translate-x-1/2 '>
-        <img src='ill-4-min.png' alt='' width={250} height={300} />
-      </div>
-      <div className='absolute bottom-8 left-1/2 transform -translate-x-1/2 mt-10'>
+      <div className='mt-10 text-center'>
         <ThemeProvider theme={theme}>
           <Button
             color='neutral'
             variant='contained'
+            sx={{ height: '3rem' }}
             className='group transition-all duration-300 ease-in'
           >
             Alışverişe Başla{'  '}
