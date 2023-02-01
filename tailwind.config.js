@@ -26,6 +26,10 @@ module.exports = {
           '100%': { transform: 'translateX(-100%)' },
         },
       },
+      backgroundImage: {
+        'hero-pattern':
+          '-webkit-linear-gradient(65deg, #056AA6 50%, #E4E9FD 50%)',
+      },
     },
   },
   plugins: [],
