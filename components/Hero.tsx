@@ -52,7 +52,7 @@ const Hero = () => {
       <div className='absolute hidden md:block top-40 left-20 '>
         <img src='ill-2-min.png' alt='' width={400} height={400} />
       </div>
-      <div className='absolute top-32 md:right-20 md:translate-x-0 md:transform-none right-1/2 transform translate-x-1/2 mt-20 md:mt-0'>
+      <div className='absolute top-44 md:top-32 md:right-20 md:translate-x-0 md:transform-none right-1/2 transform translate-x-1/2 mt-20 md:mt-0'>
         <img src='ill-3-min.png' alt='' width={400} height={400} />
       </div>
       <div className='absolute hidden lg:block top-32 left-1/2 transform -translate-x-1/2 '>
