@@ -29,7 +29,7 @@ const Hero = () => {
   return (
     <div
       className='w-full h-[40rem] md:h-[44rem] overflow-hidden p-[4rem] 
-    bg-hero-pattern bg-fixed
+    bg-hero-pattern sm:bg-fixed
     '
     >
       <div className='text-center text-3xl md:text-4xl lg:text-5xl font-bold'>
