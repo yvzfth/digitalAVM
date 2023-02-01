@@ -9,6 +9,7 @@ import BrandsContainer from '@/components/BrandsContainer';
 import Footer from '@/components/Footer';
 import WhyUsContainer from '@/components/WhyUsContainer';
 import CustomerCommentsContainer from '@/components/CustomerCommentsContainer';
+import Hero from '@/components/Hero';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -23,7 +24,8 @@ export default function Home() {
       </Head>
 
       <Navbar />
-      <main className='mt-24 mb-10 divide-y'>
+      <main className='mt-[4.5rem] mb-10 divide-y'>
+        <Hero />
         <CityCardsContainer />
         <BrandsContainer />
         <WhyUsContainer />

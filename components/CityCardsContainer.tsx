@@ -72,7 +72,7 @@ const CityCardsContainer = () => {
 
   return (
     <div>
-      <div className='flex gap-2 flex-wrap justify-center '>
+      <div className='flex gap-2 mt-8 flex-wrap justify-center '>
         <CityCard
           cityName='İstanbul'
           citySrc='https://static.nationalgeographic.co.uk/files/styles/image_3200/public/ngt_we_bistanbul_gettyimages-668990458_hr.jpg?w=1600&h=900'
