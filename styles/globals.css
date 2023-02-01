@@ -1,6 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .animate-paused {
+    animation-play-state: paused;
+  }
+}
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
