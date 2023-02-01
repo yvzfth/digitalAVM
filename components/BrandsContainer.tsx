@@ -23,8 +23,8 @@ const BrandsContainer = () => {
     return randomBrand;
   };
   return (
-    <div>
-      <div className='text-center text-4xl py-8 text-[var(--primary-color)] font-semibold'>
+    <div className='py-8'>
+      <div className='text-center text-4xl pb-8 text-[var(--primary-color)] font-semibold'>
         Popüler Markalar
       </div>
       <div className='space-y-4 [&>*]:hover:animate-paused'>
