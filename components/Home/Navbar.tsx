@@ -55,7 +55,7 @@ const Navbar = () => {
             placeholder="Digital Avm'de ara"
             type='text'
           />
-          <FiSearch className='absolute inset-y-0 right-0 text-slate-400 pr-4 py-1 text-center  pointer-events-none w-[2.1rem] h-[2.1rem]' />
+          <FiSearch className='absolute inset-y-0 right-0 text-slate-400 pr-4 py-1 text-center flex items-center pointer-events-none w-[2.1rem] h-[2.1rem]' />
         </div>
       </div>
       <div className=''>
