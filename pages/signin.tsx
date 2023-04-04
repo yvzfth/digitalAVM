@@ -75,7 +75,7 @@ const Login = () => {
     if (!_.isEmpty(innerHTML)) {
       ref.current!.innerHTML = innerHTML;
     }
-    ref.current!.onchange = () => (ref.current!.hidden = true);
+    // ref.current!.onchange = () => (ref.current!.hidden = true);
     formRef.current!.onchange = () => (ref.current!.hidden = true);
   };
 
