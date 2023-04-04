@@ -17,6 +17,7 @@ const Navbar = () => {
             light
             rounded
             color={'primary'}
+            css={{ px: 4 }}
             icon={<CiShoppingTag className='text-xl' />}
           >
             Digital AVM
@@ -48,13 +49,13 @@ const Navbar = () => {
           <option value='Kargo Bedava'>Kargo Bedava</option>
           <option value='Çok Satanlar'>Çok Satanlar</option>
         </select>
-        <div className='relative border rounded-full'>
+        <div className='relative border rounded-full w-auto'>
           <input
-            className='rounded-full pl-4 md:pl-10 pr-10 py-2 h-full overflow-hidden focus:outline-none '
+            className='rounded-full pl-4 md:pl-10 pr-10 py-2 h-full overflow-hidden focus:outline-none w-[10rem]'
             placeholder="Digital Avm'de ara"
             type='text'
           />
-          <FiSearch className='absolute inset-y-0 right-0 text-slate-400 pr-2 pointer-events-none w-[2.1rem] h-[2.1rem]' />
+          <FiSearch className='absolute inset-y-0 right-0 text-slate-400 pr-4 pointer-events-none w-[2.1rem] h-[2.1rem]' />
         </div>
       </div>
       <div className=''>
@@ -64,6 +65,7 @@ const Navbar = () => {
             ghost
             auto
             size={'sm'}
+            css={{ px: 4 }}
             onClick={() => router.push('/signin')}
           >
             <div className='flex gap-1 items-center'>
@@ -75,6 +77,7 @@ const Navbar = () => {
             ghost
             auto
             size={'sm'}
+            css={{ px: 4 }}
             onClick={() => router.push('/basket')}
           >
             <div className='flex gap-1 items-center'>
