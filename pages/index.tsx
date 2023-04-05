@@ -1,19 +1,39 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import { Inter } from '@next/font/google';
-// import styles from '@/styles/Home.module.css'
-import Navbar from 'components/Navbar';
-import CityCard from '@/components/CityCard';
-import CityCardsContainer from '@/components/CityCardsContainer';
-import BrandsContainer from '@/components/BrandsContainer';
-import Footer from '@/components/Footer';
-import WhyUsContainer from '@/components/WhyUsContainer';
-import CustomerCommentsContainer from '@/components/CustomerCommentsContainer';
-import Hero from '@/components/Hero';
+import Link from 'next/link';
+import Navbar from '@/components/Home/Navbar';
+import Cards from '@/components/Home/Cards';
+import Products from '@/components/Home/Products';
+import Suggest from '@/components/Home/Cards/Suggest';
+import React from 'react';
+import { Grid } from '@nextui-org/react';
+import Footer from '@/components/Home/Footer';
+import axios from 'axios';
+import { GetServerSideProps } from 'next';
 
-const inter = Inter({ subsets: ['latin'] });
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const res = await axios
+    .get(
+      `https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.ABSTRACTAPI_API_KEY}&fields=latitude,longitude,city,postal_code`
+    )
+    .then((res) => res.data);
 
-export default function Home() {
+  const address = await axios
+    .get(
+      `https://us1.locationiq.com/v1/search?key=${process.env.LOCATION_IQ_ACCESS_TOKEN}&city=${res.city}&postalCode=${res.postal_code}&format=json`
+      // `https://us1.locationiq.com/v1/reverse.php?key=${process.env.LOCATION_IQ_ACCESS_TOKEN}&lat=${res.latitude}&lon=${res.longitude}&format=json`
+    )
+    .then((res) => res?.data);
+  const displayAddress = address.at(0).display_name;
+  return {
+    props: {
+      city: displayAddress.substring(
+        0,
+        displayAddress.indexOf(',', displayAddress.indexOf(',') + 1)
+      ),
+    }, // will be passed to the page component as props
+  };
+};
+const Home = (props: any) => {
   return (
     <>
       <Head>
@@ -22,16 +42,23 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/logo.svg' />
       </Head>
-
-      <Navbar />
-      <main className='mt-[4.5rem] mb-10 divide-y'>
-        <Hero />
-        <CityCardsContainer />
-        <BrandsContainer />
-        <WhyUsContainer />
-        <CustomerCommentsContainer />
+      <Navbar city={props?.city} />
+      <main className='mt-20'>
+        <Cards />
+        <Products />
+        <Grid.Container gap={2} justify='center'>
+          <Grid xs={12} sm={6}>
+            <Suggest />
+          </Grid>
+          <Grid xs={12} sm={6}>
+            <Suggest />
+          </Grid>
+        </Grid.Container>
+        <Products />
       </main>
       <Footer />
     </>
   );
-}
+};
+
+export default Home;
