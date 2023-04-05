@@ -10,6 +10,9 @@ import Footer from '@/components/Home/Footer';
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
 
+// import ProductList from '@/components/Home/Cards/ProductList';
+import MuiCard from '@/components/Home/Cards/MuiCard';
+
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const res = await axios
     .get(
@@ -45,6 +48,14 @@ const Home = (props: any) => {
       </Head>
       <Navbar city={props?.city} />
       <main className='mt-20'>
+        {/* <ProductList /> */}
+        <div className='container p-4 flex flex-wrap items-center justify-start gap-4 mx-auto'>
+          <MuiCard />
+          <MuiCard stock={12} />
+          <MuiCard />
+          <MuiCard stock={3} />
+          <MuiCard stock={1} />
+        </div>
         <Cards />
         <Products />
         <Grid.Container gap={2} justify='center'>

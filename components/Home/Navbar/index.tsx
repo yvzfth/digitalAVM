@@ -7,11 +7,11 @@ import { SlLocationPin } from 'react-icons/sl';
 import { Button } from '@nextui-org/react';
 import { useRouter } from 'next/router';
 
-const Navbar = ({ city }: { city: string }) => {
+const Navbar = ({ city }: { city?: string }) => {
   const router = useRouter();
 
   return (
-    <div className='border-b p-2 fixed top-0 backdrop-blur-md w-full z-50 bg-white bg-opacity-90 shadow-xl'>
+    <div className='border-b p-2 fixed top-0 backdrop-blur-md w-full z-50 bg-white bg-opacity-90 shadow-md'>
       <div className='container flex items-center justify-between mx-auto gap-2 '>
         <div onClick={() => router.push('/home')}>
           <div className='md:hidden'>
@@ -23,6 +23,7 @@ const Navbar = ({ city }: { city: string }) => {
               color={'primary'}
               css={{ px: 4 }}
               icon={<CiShoppingTag className='text-xl' />}
+              onClick={() => router.push('/')}
             >
               Digital AVM
             </Button>
@@ -34,6 +35,7 @@ const Navbar = ({ city }: { city: string }) => {
               rounded
               color={'primary'}
               icon={<CiShoppingTag className='text-xl' />}
+              onClick={() => router.push('/')}
             >
               Digital AVM
             </Button>
@@ -112,25 +114,27 @@ const Navbar = ({ city }: { city: string }) => {
               </div>
             </Button>
           </div>
-          <div className='hidden sm:block sm:pl-2'>
-            <Button
-              color={'default'}
-              light
-              auto
-              rounded
-              aria-label='Konum'
-              css={{ lineHeight: '$sm', px: 10 }}
-            >
-              <SlLocationPin className='text-xl' />
-              <div className='grid grid-flow-row'>
-                {city?.split(' ').map((text, index) => (
-                  <div key={index} className='pl-1 '>
-                    {text}
-                  </div>
-                ))}
-              </div>
-            </Button>
-          </div>
+          {city && (
+            <div className='hidden sm:block sm:pl-2'>
+              <Button
+                color={'default'}
+                light
+                auto
+                rounded
+                aria-label='Konum'
+                css={{ lineHeight: '$sm', px: 10 }}
+              >
+                <SlLocationPin className='text-xl' />
+                <div className='grid grid-flow-row'>
+                  {city?.split(' ').map((text, index) => (
+                    <div key={index} className='pl-1 '>
+                      {text}
+                    </div>
+                  ))}
+                </div>
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </div>
