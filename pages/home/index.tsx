@@ -4,10 +4,37 @@ import Products from '@/components/Home/Products';
 import Suggest from '@/components/Home/Cards/Suggest';
 import React from 'react';
 import { Grid } from '@nextui-org/react';
-const Home = () => {
+import Footer from '@/components/Home/Footer';
+import axios from 'axios';
+import { GetServerSideProps } from 'next';
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const res = await axios
+    .get(
+      `https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.ABSTRACTAPI_API_KEY}&fields=latitude,longitude,city,postal_code`
+    )
+    .then((res) => res.data);
+
+  const address = await axios
+    .get(
+      `https://us1.locationiq.com/v1/search?key=${process.env.LOCATION_IQ_ACCESS_TOKEN}&city=${res.city}&postalCode=${res.postal_code}&format=json`
+      // `https://us1.locationiq.com/v1/reverse.php?key=${process.env.LOCATION_IQ_ACCESS_TOKEN}&lat=${res.latitude}&lon=${res.longitude}&format=json`
+    )
+    .then((res) => res?.data);
+  const displayAddress = address.at(0).display_name;
+  return {
+    props: {
+      city: displayAddress.substring(
+        0,
+        displayAddress.indexOf(',', displayAddress.indexOf(',') + 1)
+      ),
+    }, // will be passed to the page component as props
+  };
+};
+const Home = (props: any) => {
   return (
     <div>
-      <Navbar />
+      <Navbar city={props?.city} />
       <main className='mt-20'>
         <Cards />
         <Products />
@@ -21,6 +48,7 @@ const Home = () => {
         </Grid.Container>
         <Products />
       </main>
+      <Footer />
     </div>
   );
 };

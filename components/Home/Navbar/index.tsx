@@ -6,10 +6,12 @@ import { CiShoppingTag } from 'react-icons/ci';
 import { SlLocationPin } from 'react-icons/sl';
 import { Button } from '@nextui-org/react';
 import { useRouter } from 'next/router';
-const Navbar = () => {
+
+const Navbar = ({ city }: { city: string }) => {
   const router = useRouter();
+
   return (
-    <div className='border-b p-2 fixed top-0 backdrop-blur-md w-full z-50 bg-white bg-opacity-[0.88] shadow-xl'>
+    <div className='border-b p-2 fixed top-0 backdrop-blur-md w-full z-50 bg-white bg-opacity-90 shadow-xl'>
       <div className='container flex items-center justify-between mx-auto gap-2 '>
         <div onClick={() => router.push('/home')}>
           <div className='md:hidden'>
@@ -39,7 +41,7 @@ const Navbar = () => {
         </div>
         <div className='flex'>
           <select
-            className='border rounded-full px-2 py-2 hidden md:block -mr-[2.2rem] z-10'
+            className='border rounded-full pl-2 py-2 hidden md:block -mr-[2.2rem] z-10 text-xs'
             name=''
             id=''
           >
@@ -51,17 +53,17 @@ const Navbar = () => {
             <option value='Kargo Bedava'>Kargo Bedava</option>
             <option value='Çok Satanlar'>Çok Satanlar</option>
           </select>
-          <div className='relative border  rounded-full w-auto'>
+          <div className='relative border rounded-full w-auto'>
             <input
-              className='rounded-full pl-4 md:pl-10 pr-10 py-2 h-full overflow-hidden focus:outline-none w-[10rem] sm:focus:w-[15rem] md:focus:w-[18rem] lg:focus:w-[20rem] transition-all duration-300 ease-in-out'
+              className='rounded-full pl-4 md:pl-10 pr-10 py-2 h-full overflow-hidden focus:outline-none w-[10rem] sm:w-[12rem] md:w-[13rem] sm:focus:w-[15rem] md:focus:w-[18rem] lg:focus:w-[20rem] transition-all duration-300 ease-in-out text-sm'
               placeholder="Digital Avm'de ara"
               type='text'
             />
-            <FiSearch className='absolute inset-y-0 right-0 text-slate-400 pr-4 py-1 text-center flex items-center pointer-events-none w-[2.1rem] h-[2.1rem]' />
+            <FiSearch className='absolute inset-y-0 right-0 text-slate-400 mr-2 py-1 text-center flex items-center pointer-events-none w-[2.1rem] h-[2.1rem]' />
           </div>
         </div>
         <div className='flex items-center'>
-          <div className='md:hidden flex gap-2'>
+          <div className='lg:hidden flex gap-2'>
             <Button
               rounded='true'
               ghost
@@ -87,7 +89,7 @@ const Navbar = () => {
               </div>
             </Button>
           </div>
-          <div className='hidden md:flex md:gap-2'>
+          <div className='hidden lg:flex md:gap-2'>
             <Button
               rounded='true'
               ghost
@@ -120,10 +122,12 @@ const Navbar = () => {
               css={{ lineHeight: '$sm', px: 10 }}
             >
               <SlLocationPin className='text-xl' />
-
-              <div className='pl-1'>
-                Sarıyer, <br />
-                İstanbul
+              <div className='grid grid-flow-row'>
+                {city?.split(' ').map((text, index) => (
+                  <div key={index} className='pl-1 '>
+                    {text}
+                  </div>
+                ))}
               </div>
             </Button>
           </div>
