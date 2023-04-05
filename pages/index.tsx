@@ -17,19 +17,20 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     )
     .then((res) => res.data);
 
-  const address = await axios
-    .get(
-      `https://us1.locationiq.com/v1/search?key=${process.env.LOCATION_IQ_ACCESS_TOKEN}&city=${res.city}&postalCode=${res.postal_code}&format=json`
-      // `https://us1.locationiq.com/v1/reverse.php?key=${process.env.LOCATION_IQ_ACCESS_TOKEN}&lat=${res.latitude}&lon=${res.longitude}&format=json`
-    )
-    .then((res) => res?.data);
-  const displayAddress = address.at(0).display_name;
+  // const address = await axios
+  //   .get(
+  //     `https://us1.locationiq.com/v1/search?key=${process.env.LOCATION_IQ_ACCESS_TOKEN}&city=${res.city}&postalCode=${res.postal_code}&format=json`
+  //     // `https://us1.locationiq.com/v1/reverse.php?key=${process.env.LOCATION_IQ_ACCESS_TOKEN}&lat=${res.latitude}&lon=${res.longitude}&format=json`
+  //   )
+  //   .then((res) => res?.data);
+  // const displayAddress = address.at(0).display_name;
   return {
     props: {
-      city: displayAddress.substring(
-        0,
-        displayAddress.indexOf(',', displayAddress.indexOf(',') + 1)
-      ),
+      city: res.city + ', ' + res.postal_code,
+      // city: displayAddress.substring(
+      //   0,
+      //   displayAddress.indexOf(',', displayAddress.indexOf(',') + 1)
+      // ),
     }, // will be passed to the page component as props
   };
 };
