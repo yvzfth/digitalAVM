@@ -9,7 +9,35 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    fontFamily: {
+      sans: [
+        '-apple-system',
+        'BlinkMacSystemFont',
+        'Segoe\\ UI',
+        'Roboto',
+        'Oxygen',
+        'Ubuntu',
+        'Cantarell',
+        'Fira\\ Sans',
+        'Droid\\ Sans',
+        'Helvetica\\ Neue',
+        'sans-serif',
+      ],
+      mono: [
+        'Menlo',
+        'Monaco',
+        'Lucida\\ Console',
+        'Liberation\\ Mono',
+        'DejaVu\\ Sans\\ Mono',
+        'Bitstream\\ Vera\\ Sans\\ Mono',
+        'Courier\\ New',
+        'monospace',
+      ],
+    },
     extend: {
+      boxShadow: {
+        card: '0px 0px 10px 0px rgba(0,0,0,0.2)',
+      },
       animation: {
         marquee: 'marquee 100s linear infinite alternate',
         marquee2: 'marquee2 100s linear infinite alternate',
