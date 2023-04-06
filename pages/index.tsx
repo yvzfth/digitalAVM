@@ -12,6 +12,7 @@ import { GetServerSideProps } from 'next';
 
 // import ProductList from '@/components/Home/Cards/ProductList';
 import MuiCard from '@/components/Home/Cards/MuiCard';
+import products from '@/utils/products';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const res = await axios
@@ -49,12 +50,16 @@ const Home = (props: any) => {
       <Navbar city={props?.city} />
       <main className='mt-20'>
         {/* <ProductList /> */}
-        <div className='container p-4 flex flex-wrap items-center justify-start gap-4 mx-auto'>
-          <MuiCard />
-          <MuiCard stock={12} />
-          <MuiCard />
-          <MuiCard stock={3} />
-          <MuiCard stock={1} />
+        <div className='container p-4 flex flex-wrap items-center justify-center gap-4 mx-auto'>
+          {products.map((product, index) => (
+            <MuiCard
+              key={index}
+              title={product.title}
+              img={product.img}
+              price={product.price}
+              stock={product.stock}
+            />
+          ))}
         </div>
         <Cards />
         <Products />

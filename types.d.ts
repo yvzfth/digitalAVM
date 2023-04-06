@@ -1,7 +1,6 @@
 interface IProduct {
-  id: number;
-  name: string;
-  description: string;
+  title: string;
+  img: string;
   price: number;
-  image: string;
+  stock: number;
 }
