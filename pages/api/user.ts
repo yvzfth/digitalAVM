@@ -13,8 +13,18 @@ export default async function handler(
     });
     prisma.$disconnect();
     res.status(200).send('OK');
-  }
-  if (req.method === 'GET') {
-    res.status(200).json('get');
+  } else if (req.method === 'GET') {
+    const data = req.query;
+
+    const users = await prisma.users.findFirst({
+      where: {
+        // ... provide filter here
+        email: String(data?.email),
+        password: String(data?.password),
+      },
+    });
+    prisma.$disconnect();
+    // console.log(users);
+    users?.id ? res.status(200).send(true) : res.status(403).send(false);
   }
 }

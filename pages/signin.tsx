@@ -1,42 +1,14 @@
 import React, { useRef } from 'react';
-import axios from 'axios';
-import {
-  Button,
-  FormControl,
-  TextField,
-  createTheme,
-  ThemeProvider,
-} from '@mui/material';
+import axios, { AxiosError } from 'axios';
+import { FormControl, TextField } from '@mui/material';
+import { Button } from '@nextui-org/react';
 import _ from 'lodash';
 import { useRouter } from 'next/router';
-declare module '@mui/material/styles' {
-  interface Palette {
-    neutral: Palette['primary'];
-  }
-
-  interface PaletteOptions {
-    neutral?: PaletteOptions['primary'];
-  }
-}
-
-const theme = createTheme({
-  palette: {
-    neutral: {
-      main: 'rgb(13,25,152)',
-      contrastText: '#fff',
-    },
-  },
-});
-// Update the Button's color prop options
-declare module '@mui/material/Button' {
-  interface ButtonPropsColorOverrides {
-    neutral: true;
-  }
-}
-
+import { toast } from 'react-hot-toast';
+import { Text } from '@nextui-org/react';
 interface User {
-  name: string;
-  family_name: string;
+  name?: string;
+  family_name?: string;
   email: string;
   password: string;
 }
@@ -49,6 +21,7 @@ const userInitialValues = {
 };
 
 const Login = () => {
+  const [isLogin, setIsLogin] = React.useState(false);
   const [user, setUser] = React.useState<User>(userInitialValues);
   const nameRef = useRef<HTMLDivElement>(null);
   const familyNameRef = useRef<HTMLDivElement>(null);
@@ -87,7 +60,10 @@ const Login = () => {
             data: user,
           })
           .then((res) => {
-            if (res.status === 200) router.push('/');
+            if (res.status === 200) {
+              toast.success('Kayıt oluşturdu');
+              router.push('/');
+            }
           });
       } else {
         inputErrorMessagePrompt(emailRef, 'Email Hatalı!');
@@ -107,6 +83,20 @@ const Login = () => {
     }
   };
 
+  const signin = async () => {
+    await axios
+      .get('/api/user?' + `email=${user.email}&password=${user.password}`)
+      .then((res) => {
+        toast.success('Hoş geldiniz! 🎉🎉🎉');
+        router.push('/');
+      })
+      .catch((error: AxiosError) =>
+        error?.response?.status === 403
+          ? toast.error('Email veya şifre hatalı!')
+          : console.log(error)
+      );
+  };
+
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -117,48 +107,49 @@ const Login = () => {
   return (
     <div className='flex justify-center items-center h-screen w-full'>
       <form ref={formRef}>
-        <div className={'flex flex-col w-[18rem]'}>
-          <div className='flex'>
-            <FormControl sx={{ m: 1 }}>
-              <TextField
-                type={'text'}
-                label='İsim'
-                id='name-label'
-                name='name'
-                required
-                // error={_.isEmpty(user.name)}
-                // helperText={_.isEmpty(user.name) ? 'Name required' : ''}
-                value={user.name}
-                onChange={handleInputChange}
-                placeholder='İsim'
-              />
-              <div
-                ref={nameRef}
-                hidden
-                className='text-center p-2 text-red-700 text-xs'
-              >
-                İsim zorunlu!
-              </div>
-            </FormControl>
-            <FormControl sx={{ m: 1 }}>
-              <TextField
-                type={'text'}
-                label='Soy ismi'
-                id='family_name-label'
-                name='family_name'
-                required
-                value={user.family_name}
-                onChange={handleInputChange}
-                placeholder='Soy ismi'
-              />
-              <div
-                ref={familyNameRef}
-                hidden
-                className='text-center p-2 text-red-700 text-xs'
-              >
-                Soy ismi zorunlu!
-              </div>
-            </FormControl>
+        <div className={'flex flex-col  w-[18rem]'}>
+          <div className='mx-auto my-2' onClick={() => router.push('/')}>
+            <img src='logo.svg' alt='logo' className='h-20' />
+          </div>
+          <div hidden={isLogin}>
+            <div className='flex'>
+              <FormControl sx={{ m: 1 }}>
+                <TextField
+                  type={'text'}
+                  label='İsim'
+                  id='name-label'
+                  name='name'
+                  required={!isLogin}
+                  // error={_.isEmpty(user.name)}
+                  // helperText={_.isEmpty(user.name) ? 'Name required' : ''}
+                  value={user.name}
+                  onChange={handleInputChange}
+                  placeholder='İsim'
+                />
+                <div ref={nameRef} hidden className='p-2 text-red-700 text-xs'>
+                  İsim zorunlu!
+                </div>
+              </FormControl>
+              <FormControl sx={{ m: 1 }}>
+                <TextField
+                  type={'text'}
+                  label='Soy ismi'
+                  id='family_name-label'
+                  name='family_name'
+                  required={!isLogin}
+                  value={user.family_name}
+                  onChange={handleInputChange}
+                  placeholder='Soy ismi'
+                />
+                <div
+                  ref={familyNameRef}
+                  hidden
+                  className='p-2 text-red-700 text-xs'
+                >
+                  Soy ismi zorunlu!
+                </div>
+              </FormControl>
+            </div>
           </div>
           <FormControl sx={{ m: 1 }}>
             <TextField
@@ -173,11 +164,7 @@ const Login = () => {
               onChange={handleInputChange}
               placeholder='Email'
             />
-            <div
-              ref={emailRef}
-              hidden
-              className='text-center p-2 text-red-700 text-xs'
-            >
+            <div ref={emailRef} hidden className='p-2 text-red-700 text-xs'>
               Email zorunlu!
             </div>
           </FormControl>
@@ -195,24 +182,31 @@ const Login = () => {
               onChange={handleInputChange}
               placeholder='Şifre'
             />
-            <div
-              ref={passwordRef}
-              hidden
-              className='text-center p-2 text-red-700 text-xs'
-            >
+            <div ref={passwordRef} hidden className='p-2 text-red-700 text-xs'>
               Şifre Zorunlu!
             </div>
           </FormControl>
-          <ThemeProvider theme={theme}>
-            <Button
-              sx={{ m: 1 }}
-              variant='contained'
-              color='neutral'
-              onClick={addUser}
-            >
-              Kayıt Ol
-            </Button>
-          </ThemeProvider>
+
+          <Button
+            css={{ m: '.5rem', borderRadius: '.25rem' }}
+            color='primary'
+            onPress={isLogin ? signin : addUser}
+          >
+            {isLogin ? 'Giriş Yap' : 'Kayıt Ol'}
+          </Button>
+          <div>
+            <Text className='text-right mr-2 text-xs select-none'>
+              {isLogin
+                ? 'Hesabınız henüz yok mu? '
+                : 'Hesabınız zaten var mı? '}
+              <span
+                className='cursor-pointer hover:underline hover:text-[rgb(9,87,243)]'
+                onClick={() => setIsLogin((pre) => !pre)}
+              >
+                {isLogin ? 'Kayıt ol' : 'Giriş Yap'}
+              </span>
+            </Text>
+          </div>
         </div>
       </form>
     </div>
