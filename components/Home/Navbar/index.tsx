@@ -9,11 +9,11 @@ import { useRouter } from 'next/router';
 
 const Navbar = ({ city }: { city?: string }) => {
   const router = useRouter();
-
+  const [query, setQuery] = React.useState<string>('');
   return (
     <div className='border-b p-2 fixed top-0 backdrop-blur-md w-full z-50 bg-white bg-opacity-90 shadow-md'>
       <div className='container flex items-center justify-between mx-auto gap-2 '>
-        <div onClick={() => router.push('/home')}>
+        <div>
           <div className='md:hidden'>
             <Button
               size={'sm'}
@@ -41,29 +41,55 @@ const Navbar = ({ city }: { city?: string }) => {
             </Button>
           </div>
         </div>
-        <div className='flex'>
-          <select
-            className='border rounded-full pl-2 py-2 hidden md:block -mr-[2.2rem] z-10 text-xs'
-            name=''
-            id=''
-          >
-            <option value='' disabled selected>
-              Kategoriler
-            </option>
-            <option value='Yeni Gelenler'>Yeni Gelenler</option>
-            <option value='İndirimli'>İndirimli</option>
-            <option value='Kargo Bedava'>Kargo Bedava</option>
-            <option value='Çok Satanlar'>Çok Satanlar</option>
-          </select>
-          <div className='relative border rounded-full w-auto'>
-            <input
-              className='rounded-full pl-4 md:pl-10 pr-10 py-2 h-full overflow-hidden focus:outline-none w-[10rem] sm:w-[12rem] md:w-[13rem] sm:focus:w-[15rem] md:focus:w-[18rem] lg:focus:w-[20rem] transition-all duration-300 ease-in-out text-sm'
-              placeholder="Digital Avm'de ara"
-              type='text'
-            />
-            <FiSearch className='absolute inset-y-0 right-0 text-slate-400 mr-2 py-1 text-center flex items-center pointer-events-none w-[2.1rem] h-[2.1rem]' />
+        <form
+          action='/search'
+          onSubmit={(e) => {
+            e.preventDefault();
+            router.push('/search?q=' + query);
+            setQuery('');
+          }}
+        >
+          <div className='flex'>
+            <select
+              className='border rounded-full pl-2 py-2 hidden md:block -mr-[2.2rem] z-10 text-xs'
+              name=''
+              id=''
+              defaultValue={''}
+            >
+              <option value='' disabled>
+                Kategoriler
+              </option>
+              <option value='Yeni Gelenler'>Yeni Gelenler</option>
+              <option value='İndirimli'>İndirimli</option>
+              <option value='Kargo Bedava'>Kargo Bedava</option>
+              <option value='Çok Satanlar'>Çok Satanlar</option>
+            </select>
+            <div className='relative border rounded-full w-auto'>
+              <input
+                className='rounded-full pl-4 md:pl-10 pr-10 py-2 h-full overflow-hidden focus:outline-none w-[10rem] sm:w-[12rem] md:w-[13rem] sm:focus:w-[15rem] md:focus:w-[18rem] lg:focus:w-[20rem] transition-all duration-300 ease-in-out text-sm'
+                placeholder="Digital Avm'de ara"
+                type='text'
+                onChange={(e) => setQuery(e.target.value)}
+                value={query}
+              />
+              <Button
+                type='submit'
+                light
+                css={{
+                  h: 'fit-content',
+                  position: 'absolute',
+                  minWidth: 'fit-content',
+                  p: 0,
+                  mr: 4,
+                }}
+                className='inset-y-0 right-0 text-center flex items-center '
+                onClick={() => router.push('/search?q=' + query)}
+              >
+                <FiSearch className='w-[2.1rem] h-[2.1rem] text-slate-400 py-1' />
+              </Button>
+            </div>
           </div>
-        </div>
+        </form>
         <div className='flex items-center'>
           <div className='lg:hidden flex gap-2'>
             <Button
