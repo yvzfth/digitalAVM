@@ -4,3 +4,6 @@ interface IProduct {
   price: number;
   stock: number;
 }
+interface ICity {
+  city: string;
+}
