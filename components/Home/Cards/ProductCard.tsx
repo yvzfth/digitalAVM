@@ -20,7 +20,7 @@ function ProductCard({
       style={style}
     >
       <div className='relative rounded-t-md h-[14rem] row'>
-        <Image
+        {/* <Image
           src={product.image}
           alt={product.name}
           fill
@@ -29,11 +29,11 @@ function ProductCard({
             borderTopLeftRadius: '.375rem',
             borderTopRightRadius: '.375rem',
           }}
-        />
+        /> */}
       </div>
       <div className='p-4'>
-        <h2 className='text-lg font-bold mb-2'>{product.name}</h2>
-        <p className='text-gray-700 mb-4'>{product.description}</p>
+        {/* <h2 className='text-lg font-bold mb-2'>{product.name}</h2>
+        <p className='text-gray-700 mb-4'>{product.description}</p> */}
         <div className='flex justify-between'>
           <div>${product.price}</div>
           <button
