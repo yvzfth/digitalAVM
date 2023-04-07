@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import axios, { AxiosError } from 'axios';
-import { FormControl, TextField } from '@mui/material';
 import { Button } from '@nextui-org/react';
 import _ from 'lodash';
 import { useRouter } from 'next/router';
@@ -8,6 +7,7 @@ import { toast } from 'react-hot-toast';
 import { Text } from '@nextui-org/react';
 import { signIn } from 'next-auth/react';
 import { FcGoogle } from 'react-icons/fc';
+
 interface User {
   name?: string;
   family_name?: string;
@@ -107,18 +107,18 @@ const Login = () => {
   };
 
   return (
-    <div className='flex justify-center items-center h-screen w-full'>
+    <div className='flex flex-col justify-center items-center h-screen w-full'>
+      <div className='mx-auto my-2' onClick={() => router.push('/')}>
+        <img src='logo.svg' alt='logo' className='h-20' />
+      </div>
       <form ref={formRef}>
-        <div className={'flex flex-col  w-[18rem]'}>
-          <div className='mx-auto my-2' onClick={() => router.push('/')}>
-            <img src='logo.svg' alt='logo' className='h-20' />
-          </div>
+        <div className={'flex flex-col justify-center w-[20rem]'}>
           <div hidden={isLogin}>
-            <div className='flex'>
-              <FormControl sx={{ m: 1 }}>
-                <TextField
+            <div className='flex justify-between'>
+              <div className='m-2'>
+                <input
+                  className='border rounded-md px-4 py-2 w-[9rem]'
                   type={'text'}
-                  label='İsim'
                   id='name-label'
                   name='name'
                   required={!isLogin}
@@ -131,11 +131,11 @@ const Login = () => {
                 <div ref={nameRef} hidden className='p-2 text-red-700 text-xs'>
                   İsim zorunlu!
                 </div>
-              </FormControl>
-              <FormControl sx={{ m: 1 }}>
-                <TextField
+              </div>
+              <div className=' m-2'>
+                <input
+                  className='border rounded-md px-4 py-2 w-[9rem]'
                   type={'text'}
-                  label='Soy ismi'
                   id='family_name-label'
                   name='family_name'
                   required={!isLogin}
@@ -150,47 +150,42 @@ const Login = () => {
                 >
                   Soy ismi zorunlu!
                 </div>
-              </FormControl>
+              </div>
             </div>
           </div>
-          <FormControl sx={{ m: 1 }}>
-            <TextField
-              type={'email'}
-              label='Email'
-              id='email-label'
-              name='email'
-              required
-              // error={!isValidEmail(user.email)}
-              // helperText={!isValidEmail(user.email) ? 'Email hatalı!' : ''}
-              value={user.email}
-              onChange={handleInputChange}
-              placeholder='Email'
-            />
-            <div ref={emailRef} hidden className='p-2 text-red-700 text-xs'>
-              Email zorunlu!
-            </div>
-          </FormControl>
-          <FormControl sx={{ m: 1 }}>
-            <TextField
-              type='password'
-              label='Şifre'
-              id='password'
-              name='password'
-              required
-              inputProps={{
-                autoComplete: 'new-password',
-              }}
-              value={user.password}
-              onChange={handleInputChange}
-              placeholder='Şifre'
-            />
-            <div ref={passwordRef} hidden className='p-2 text-red-700 text-xs'>
-              Şifre Zorunlu!
-            </div>
-          </FormControl>
+
+          <input
+            className='border rounded-md px-4 py-2 m-2'
+            type={'email'}
+            id='email-label'
+            name='email'
+            required
+            // error={!isValidEmail(user.email)}
+            // helperText={!isValidEmail(user.email) ? 'Email hatalı!' : ''}
+            value={user.email}
+            onChange={handleInputChange}
+            placeholder='Email'
+          />
+          <div ref={emailRef} hidden className='p-2 text-red-700 text-xs'>
+            Email zorunlu!
+          </div>
+
+          <input
+            className='border rounded-md px-4 py-2 m-2'
+            type='password'
+            id='password'
+            name='password'
+            required
+            value={user.password}
+            onChange={handleInputChange}
+            placeholder='Şifre'
+          />
+          <div ref={passwordRef} hidden className='p-2 text-red-700 text-xs'>
+            Şifre Zorunlu!
+          </div>
 
           <Button
-            css={{ m: '.5rem', borderRadius: '.25rem' }}
+            css={{ m: '.5rem', borderRadius: '.375rem' }}
             color='primary'
             onPress={isLogin ? signin : addUser}
           >
@@ -213,7 +208,7 @@ const Login = () => {
           <Button
             css={{
               m: '.5rem',
-              borderRadius: '.25rem',
+              borderRadius: '.375rem',
               bgColor: '$white',
               color: '$primary',
             }}

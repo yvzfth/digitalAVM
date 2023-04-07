@@ -58,7 +58,7 @@ const Search = ({ city }: { city: string }) => {
   return (
     <div>
       <Navbar city={city} />
-      <main className='mt-20'>
+      <main className='mt-20 mx-4'>
         {/* <ProductList /> */}
         <div className='container p-4 flex flex-wrap items-center justify-center md:justify-start gap-4 mx-auto'>
           {filteredProducts.map((product, index) => (
