@@ -12,6 +12,7 @@ const Navbar = ({ city }: { city?: string }) => {
   const session = useSession();
   const router = useRouter();
   const [query, setQuery] = React.useState<string>('');
+  console.log(session);
   return (
     <div className='border-b p-2 fixed top-0 backdrop-blur-md w-full z-50 bg-white bg-opacity-90 shadow-md'>
       <div className='container flex items-center justify-between mx-auto gap-2 '>
@@ -24,7 +25,6 @@ const Navbar = ({ city }: { city?: string }) => {
               rounded
               color={'primary'}
               css={{ px: 4 }}
-              icon={<CiShoppingTag className='text-xl' />}
               onClick={() => router.push('/')}
             >
               Digital AVM
@@ -36,7 +36,6 @@ const Navbar = ({ city }: { city?: string }) => {
               light
               rounded
               color={'primary'}
-              icon={<CiShoppingTag className='text-xl' />}
               onClick={() => router.push('/')}
             >
               Digital AVM
@@ -93,65 +92,18 @@ const Navbar = ({ city }: { city?: string }) => {
           </div>
         </form>
         <div className='flex items-center'>
-          <div className='lg:hidden flex items-center gap-2'>
+          <div className='flex items-center md:gap-2'>
             {session.status !== 'authenticated' ? (
               <Button
                 rounded='true'
                 ghost
                 auto
-                size={'sm'}
-                css={{ px: 4 }}
+                css={{ p: 4, '@lg': { p: '$md' } }}
                 onClick={() => router.push('/signin')}
               >
                 <div className='flex gap-1 items-center'>
-                  <IoLogInOutline className='text-xl' />
-                </div>
-              </Button>
-            ) : (
-              <Popover>
-                <Popover.Trigger>
-                  {session.data?.user?.image ? (
-                    <Avatar
-                      css={{ width: '.1rem', height: '.1rem' }}
-                      src={session.data?.user?.image}
-                    />
-                  ) : (
-                    <Avatar
-                      size={'sm'}
-                      text={session?.data?.user?.email?.charAt(0)}
-                    />
-                  )}
-                </Popover.Trigger>
-                <Popover.Content>
-                  <UserTwitterCard></UserTwitterCard>
-                </Popover.Content>
-              </Popover>
-            )}
-            <Button
-              rounded
-              bordered={false}
-              // ghost
-              light
-              color={'primary'}
-              auto
-              size={'md'}
-              style={{ margin: '2px', padding: 0 }}
-              // css={{ px: 4 }}
-              onClick={() => router.push('/basket')}
-            >
-              <HiOutlineShoppingBag className='text-4xl m-1' />
-            </Button>
-          </div>
-          <div className='hidden lg:flex lg:items-center md:gap-2'>
-            {session.status !== 'authenticated' ? (
-              <Button
-                rounded='true'
-                ghost
-                auto
-                onClick={() => router.push('/signin')}
-              >
-                <div className='flex gap-1 items-center'>
-                  <IoLogInOutline className='text-xl' /> <div>Giriş</div>
+                  <IoLogInOutline className='text-3xl lg:text-xl' />{' '}
+                  <div className='hidden lg:block'>Giriş</div>
                 </div>
               </Button>
             ) : (

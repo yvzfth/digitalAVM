@@ -1,10 +1,10 @@
 import React from 'react';
 import { User, Row, Col, Text, Button, Spacer, Grid } from '@nextui-org/react';
 import { signOut } from 'next-auth/react';
-
+import { useSession } from 'next-auth/react';
 export const UserTwitterCard = () => {
-  const [following, setFollowing] = React.useState(false);
-
+  //   const [following, setFollowing] = React.useState(false);
+  const { data: session } = useSession();
   return (
     <Grid.Container
       className='user-twitter-card__container'
@@ -17,9 +17,9 @@ export const UserTwitterCard = () => {
       <Row justify='space-around' align='center'>
         <Col span={8}>
           <User
-            src='https://i.pravatar.cc/150?u=a042581f4e29026704d'
-            name='Ariana Wattson'
-            description='UI/UX Designer'
+            src={session?.user?.image!}
+            name={session?.user?.name!}
+            description={session?.user?.email!}
             css={{ px: 0 }}
           />
         </Col>
@@ -37,11 +37,11 @@ export const UserTwitterCard = () => {
                 maxHeight: '$space$12',
                 fs: '$xs',
                 fontWeight: '$semibold',
-                borderColor: following ? '$foreground' : '$primary',
-                color: following ? '$foreground' : '$white',
+                // borderColor: following ? '$foreground' : '$primary',
+                // color: following ? '$foreground' : '$white',
               }}
               color='primary'
-              bordered={following}
+              //   bordered={following}
             >
               {/* {following ? 'Unfollow' : 'Follow'} */}
               Çıkış Yap
@@ -49,48 +49,6 @@ export const UserTwitterCard = () => {
           </Row>
         </Col>
       </Row>
-      <Grid.Container className='user-twitter-card__username-container'>
-        <Grid xs={12}>
-          <Text
-            className='user-twitter-card__text'
-            size={14}
-            css={{ mt: '$1' }}
-            color='#888888'
-          >
-            Full-stack developer, @getnextui lover she/her 🎉
-          </Text>
-        </Grid>
-      </Grid.Container>
-
-      <Grid.Container
-        className='user-twitter-card__metrics-container'
-        justify='flex-start'
-        alignContent='center'
-      >
-        <Text className='user-twitter-card__text' size={14} color='#888888'>
-          <Text
-            b
-            color='foreground'
-            className='user-twitter-card__text'
-            size={14}
-          >
-            4
-          </Text>
-          Following
-        </Text>
-        <Spacer inline x={0.5} />
-        <Text className='user-twitter-card__text' size={14} color='#888888'>
-          <Text
-            b
-            color='foreground'
-            className='user-twitter-card__text'
-            size={14}
-          >
-            97.1K
-          </Text>
-          Followers
-        </Text>
-      </Grid.Container>
     </Grid.Container>
   );
 };

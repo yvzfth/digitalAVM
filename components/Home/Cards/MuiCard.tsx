@@ -7,6 +7,8 @@ import { CardActionArea, CardActions, Rating } from '@mui/material';
 import { BsHeart, BsHeartFill } from 'react-icons/bs';
 import { Button, Text } from '@nextui-org/react';
 import products from '@/utils/products';
+import { useRouter } from 'next/router';
+import _ from 'lodash';
 export default function MultiActionAreaCard({
   title,
   img,
@@ -14,6 +16,7 @@ export default function MultiActionAreaCard({
   stock,
 }: IProduct) {
   const [liked, setLiked] = React.useState<boolean>(false);
+  const router = useRouter();
   return (
     <div className='relative'>
       <Button
@@ -28,13 +31,14 @@ export default function MultiActionAreaCard({
       </Button>
       <Card
         sx={{
-          minWidth: { xs: 400, sm: 225 },
-          maxWidth: { xs: 400, sm: 225 },
-          minHeight: { xs: 200, sm: 400 },
-          height: { xs: 200, sm: 400 },
+          minWidth: { xs: 360, sm: 225 },
+          maxWidth: { xs: 360, sm: 225 },
+          minHeight: { xs: 180, sm: 400 },
+          height: { xs: 180, sm: 400 },
           borderRadius: '.875rem',
           boxShadow: '0px 0px 20px 0px rgba(0,0,0,0.2)',
         }}
+        onClick={() => router.push('/products/' + _.kebabCase(title))}
       >
         <CardActionArea
           sx={{
@@ -58,8 +62,8 @@ export default function MultiActionAreaCard({
             image={img}
             alt='green iguana'
             sx={{
-              minHeight: 200,
-              height: 200,
+              minHeight: { xs: 180, sm: 200 },
+              height: { xs: 180, sm: 200 },
             }}
           />
           <CardContent sx={{ height: '100%' }}>
