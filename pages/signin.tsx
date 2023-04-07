@@ -6,6 +6,8 @@ import _ from 'lodash';
 import { useRouter } from 'next/router';
 import { toast } from 'react-hot-toast';
 import { Text } from '@nextui-org/react';
+import { signIn } from 'next-auth/react';
+import { FcGoogle } from 'react-icons/fc';
 interface User {
   name?: string;
   family_name?: string;
@@ -207,6 +209,22 @@ const Login = () => {
               </span>
             </Text>
           </div>
+          <hr className='m-4' />
+          <Button
+            css={{
+              m: '.5rem',
+              borderRadius: '.25rem',
+              bgColor: '$white',
+              color: '$primary',
+            }}
+            bordered
+            color='primary'
+            onPress={() => signIn('google')}
+            // icon={<FcGoogle />}
+          >
+            <FcGoogle />
+            oogle ile giriş yap
+          </Button>
         </div>
       </form>
     </div>
