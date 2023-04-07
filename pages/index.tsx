@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import Navbar from '@/components/Home/Navbar';
 import Cards from '@/components/Home/Cards';
 import Products from '@/components/Home/Products';
@@ -9,10 +8,6 @@ import { Grid } from '@nextui-org/react';
 import Footer from '@/components/Home/Footer';
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
-
-// import ProductList from '@/components/Home/Cards/ProductList';
-import MuiCard from '@/components/Home/Cards/MuiCard';
-import products from '@/utils/products';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const res = await axios
@@ -62,7 +57,7 @@ const Home = (props: any) => {
         <title>Dijital AVM</title>
         <meta name='description' content='Dijital AVM' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <link rel='icon' href='/logo.svg' />
+        <link rel='icon' href='/logo.ico' />
       </Head>
       <Navbar city={props?.city} />
       <main className='mt-20'>
