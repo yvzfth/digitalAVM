@@ -47,7 +47,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // const displayAddress = address.at(0).display_name;
   return {
     props: {
-      city: res.city + ', ' + res.postal_code,
+      city: res?.city + ', ' + res?.postal_code,
       // city: displayAddress.substring(
       //   0,
       //   displayAddress.indexOf(',', displayAddress.indexOf(',') + 1)
