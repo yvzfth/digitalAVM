@@ -6,7 +6,7 @@ import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { PrismaClient } from '@prisma/client';
 import { compare } from 'bcryptjs';
-
+import { sign } from 'jsonwebtoken';
 const prisma = new PrismaClient();
 
 export const authOptions = {
@@ -43,8 +43,7 @@ export const authOptions = {
         return {
           id: String(result.id),
           email: result.email,
-          name: result.name,
-          family_name: result.family_name,
+          name: result.name + ' ' + result.family_name,
         };
       },
       credentials: { email: { type: 'text' }, password: { type: 'text' } },
@@ -71,6 +70,13 @@ export const authOptions = {
           token.role = user.role;
         }
         token.accessToken = account.access_token;
+      } else {
+        const payload = {
+          ...user,
+          iat: Math.floor(Date.now() / 1000), // issued at time in seconds
+          exp: Math.floor(Date.now() / 1000) + 60 * 60 * 12, // expiration time in seconds, e.g. 12 hour from now
+        };
+        token.accessToken = sign(payload, process.env.JWT_SECRET!);
       }
       return token;
     },

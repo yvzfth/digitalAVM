@@ -1,5 +1,5 @@
 import MultiActionAreaCard from '@/components/Home/Cards/MuiCard';
-import Navbar from '@/components/Home/Navbar';
+import Layout from '@/components/Layout';
 import products from '@/utils/products';
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
@@ -56,9 +56,8 @@ const Search = ({ city }: { city: string }) => {
     product.title.toLowerCase().includes(String(query.q).toLowerCase()!)
   );
   return (
-    <div>
-      <Navbar city={city} />
-      <main className='mt-20 mx-4'>
+    <Layout city={city}>
+      <div className='mx-4'>
         {/* <ProductList /> */}
         <div className='container p-4 flex flex-wrap items-center justify-center md:justify-start gap-4 mx-auto'>
           {filteredProducts.map((product, index) => (
@@ -71,8 +70,8 @@ const Search = ({ city }: { city: string }) => {
             />
           ))}
         </div>
-      </main>
-    </div>
+      </div>
+    </Layout>
   );
 };
 

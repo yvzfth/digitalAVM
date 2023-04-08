@@ -2,11 +2,11 @@ import React from 'react';
 import { FiSearch } from 'react-icons/fi';
 import { HiOutlineShoppingBag } from 'react-icons/hi';
 import { IoLogInOutline } from 'react-icons/io5';
-import { CiShoppingTag } from 'react-icons/ci';
+
 import { SlLocationPin } from 'react-icons/sl';
 import { Avatar, Button, Popover } from '@nextui-org/react';
 import { useRouter } from 'next/router';
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { UserTwitterCard } from './UserCard';
 const Navbar = ({ city }: { city?: string }) => {
   const session = useSession();
@@ -109,15 +109,9 @@ const Navbar = ({ city }: { city?: string }) => {
               <Popover>
                 <Popover.Trigger>
                   {session.data?.user?.image ? (
-                    <Avatar
-                      css={{ width: '.1rem', height: '.1rem' }}
-                      src={session.data?.user?.image}
-                    />
+                    <Avatar src={session.data?.user?.image} />
                   ) : (
-                    <Avatar
-                      size={'sm'}
-                      text={session?.data?.user?.email?.charAt(0)}
-                    />
+                    <Avatar text={session?.data?.user?.name?.charAt(0)} />
                   )}
                 </Popover.Trigger>
                 <Popover.Content>
@@ -136,7 +130,7 @@ const Navbar = ({ city }: { city?: string }) => {
               size={'md'}
               style={{ margin: '2px', padding: 0 }}
               // css={{ px: 4 }}
-              onClick={() => router.push('/basket')}
+              onClick={() => router.push('/cart')}
             >
               <HiOutlineShoppingBag className='text-4xl m-1' />
             </Button>

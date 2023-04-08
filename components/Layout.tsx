@@ -1,11 +1,23 @@
 import Footer from './Home/Footer';
 import React, { ReactElement } from 'react';
 import HeadComponent from './HeadComponent';
-export default function Layout({ children }: { children: ReactElement }) {
+import Navbar from './Home/Navbar';
+export default function Layout({
+  children,
+  city,
+  title,
+  description,
+}: {
+  children: ReactElement;
+  city?: string;
+  title?: string;
+  description?: string;
+}) {
   return (
     <>
-      <HeadComponent />
-      <main className='min-h-[300px]'>{children}</main>
+      <HeadComponent title={title} description={description} />
+      <Navbar city={city} />
+      <main className='min-h-screen mt-20'>{children}</main>
       <Footer />
     </>
   );

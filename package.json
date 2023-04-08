@@ -25,6 +25,7 @@
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",
     "formik": "^2.2.9",
+    "jsonwebtoken": "^9.0.0",
     "lodash": "^4.17.21",
     "next": "13.1.6",
     "next-auth": "^4.21.1",
@@ -39,6 +40,7 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/dns2": "^2.0.1",
+    "@types/jsonwebtoken": "^9.0.1",
     "@types/lodash": "^4.14.191",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.21",

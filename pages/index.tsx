@@ -8,6 +8,7 @@ import { Grid } from '@nextui-org/react';
 import Footer from '@/components/Home/Footer';
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
+import Layout from '@/components/Layout';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const res = await axios
@@ -52,15 +53,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 const Home = (props: any) => {
   return (
-    <>
-      <Head>
-        <title>Dijital AVM</title>
-        <meta name='description' content='Dijital AVM' />
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <link rel='icon' href='/logo.ico' />
-      </Head>
-      <Navbar city={props?.city} />
-      <main className='mt-20'>
+    <Layout city={props?.city}>
+      <div>
         <Cards />
         <Products />
         <Grid.Container gap={2} justify='center'>
@@ -72,9 +66,8 @@ const Home = (props: any) => {
           </Grid>
         </Grid.Container>
         <Products />
-      </main>
-      <Footer />
-    </>
+      </div>
+    </Layout>
   );
 };
 

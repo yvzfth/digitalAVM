@@ -1,5 +1,5 @@
 import ShoppingCart from '@/components/Home/Cards/ShoppingCart';
-import Navbar from '@/components/Home/Navbar';
+import Layout from '@/components/Layout';
 import React from 'react';
 const items = [
   { id: 1, name: 'Item 1', price: 10 },
@@ -8,20 +8,19 @@ const items = [
 ];
 const totalPrice = items.reduce((acc, item) => acc + item.price, 0);
 
-const Basket = () => {
+const Cart = () => {
   return (
-    <div className='mt-20'>
-      <Navbar />
+    <Layout>
       <div className='container mx-auto px-4'>
         <ShoppingCart
           items={items}
           totalPrice={totalPrice}
           className='my-4'
-          style={{ width: '400px' }}
+          style={{ width: '300px' }}
         />
       </div>
-    </div>
+    </Layout>
   );
 };
 
-export default Basket;
+export default Cart;
