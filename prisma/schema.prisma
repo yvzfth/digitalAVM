@@ -11,7 +11,7 @@ model Users {
   id          Int       @id @unique @default(autoincrement())
   name        String?   @db.VarChar(255)
   family_name String?   @db.VarChar(255)
-  email       String?   @unique @db.VarChar(255)
+  email       String?   @db.VarChar(255)
   password    String?   @db.VarChar(255)
   create_time DateTime? @db.DateTime(0)
   gender      Int?      @db.TinyInt
