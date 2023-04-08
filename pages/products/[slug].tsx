@@ -1,4 +1,5 @@
 import products from '@/utils/products';
+import _ from 'lodash';
 import { useRouter } from 'next/router';
 import React from 'react';
 
@@ -6,12 +7,11 @@ const ProductDetail = () => {
   const router = useRouter();
   const { slug } = router.query;
   const product = products.find(
-    (product) => product.title.toLowerCase() === slug
+    (product) => _.kebabCase(product.title) === slug
   );
 
   // -------- CHANGE BELOW ------------------
-  console.log('selam', product);
-  // {JSON.stringify(product)}
+
   return (
     <div className='h-screen display:flex justify-center items-center  '>
       <div className='product-container display: flex gap-20 mx-auto my-auto  justify-center items-center h h-4/5  w-4/6   '>
