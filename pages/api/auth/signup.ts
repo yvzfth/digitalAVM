@@ -15,7 +15,7 @@ export default async function handler(
     const data = req.body.data;
 
     // check if user exists
-    const isUserExists = await prisma.users.findUnique({
+    const isUserExists = await prisma.users.findFirst({
       where: { email: String(data?.email)! },
     });
     if (isUserExists)
