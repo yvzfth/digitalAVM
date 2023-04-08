@@ -23,7 +23,7 @@ export const authOptions = {
         // check user existance
 
         const result = await prisma.users.findUnique({
-          where: { email: credentials?.email },
+          where: { email: credentials?.email! },
         });
         if (!result) {
           throw new Error('No user Found with Email Please Sign Up...!');
