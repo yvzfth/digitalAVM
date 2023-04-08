@@ -12,7 +12,6 @@ const Navbar = ({ city }: { city?: string }) => {
   const session = useSession();
   const router = useRouter();
   const [query, setQuery] = React.useState<string>('');
-
   return (
     <div className='border-b p-2 fixed top-0 backdrop-blur-md w-full z-50 bg-white bg-opacity-90 shadow-md'>
       <div className='container flex items-center justify-between mx-auto gap-2 '>
