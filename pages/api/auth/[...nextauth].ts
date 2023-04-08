@@ -22,7 +22,7 @@ export const authOptions = {
         prisma.$connect();
         // check user existance
 
-        const result = await prisma.users.findUnique({
+        const result = await prisma.users.findFirst({
           where: { email: credentials?.email! },
         });
         if (!result) {
