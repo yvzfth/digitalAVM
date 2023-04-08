@@ -20,6 +20,7 @@
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
     "axios": "^1.2.6",
+    "bcryptjs": "^2.4.3",
     "dns2": "^2.0.5",
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",
@@ -36,6 +37,7 @@
     "typescript": "4.9.4"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/dns2": "^2.0.1",
     "@types/lodash": "^4.14.191",
     "autoprefixer": "^10.4.13",
