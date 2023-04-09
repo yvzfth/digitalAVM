@@ -13,11 +13,11 @@ const ProductDetail = () => {
   // -------- CHANGE BELOW ------------------
 
   return (
-    <div className='h-screen display:flex justify-center items-center  '>
-      <div className='product-container display: flex gap-20 mx-auto my-auto  justify-center items-center h h-4/5  w-4/6   '>
-        <div className='product-image'>
-          <img
-            className=' rounded-2xl'
+    <div className='min-h-screen display:flex justify-center items-center  '>
+      <div className='product-container flex-wrap flex-col display: flex gap-20 mx-auto my-auto  justify-center items-center h h-4/5  w-4/6   '>
+        <div className='product-image max-w-lg md:w-1/3 mt-20'>
+          <img                        
+            className=''
             src={product?.img}
             alt='product-image'
           />
@@ -48,7 +48,7 @@ const ProductDetail = () => {
           </p>
           <div className='product-colors mb-2'>
             <span>Color:</span>
-            <select>
+            <select className='w-full md:w-1/2'>
               <option value='Red'>Red</option>
               <option value='Blue'>Blue</option>
               <option value='Green'>Green</option>
@@ -56,7 +56,7 @@ const ProductDetail = () => {
           </div>
           <div className='product-sizes mb-2'>
             <span>Size:</span>
-            <select>
+            <select className='w-full md:w-1/2'>
               <option value='Small'>Small</option>
               <option value='Medium'>Medium</option>
               <option value='Large'>Large</option>
@@ -67,7 +67,7 @@ const ProductDetail = () => {
             <input className=' ml-5' type='number' />
           </div>
 
-          <div className='buttons  mt-5 '>
+          <div className='buttons  mt-8 flex-wrap display:flex justify-center text-center'>
             <button className='bg-transparent hover:bg-green-700 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-3xl'>
               Buy Now
             </button>
@@ -76,6 +76,12 @@ const ProductDetail = () => {
             </button>
           </div>
         </div>
+        <div className='special-details flex-wrap display:flex'>
+          
+          <h1 className='font-bold mb-2'>Free Delivery </h1><p className='mb-5'>Enter your postal code for delivery availability</p>
+          <h1 className='font-bold mb-2'>Return Delivery</h1><p className=' mb-10'>Free 30 days delivery returns.<a href="#">details</a></p> 
+        </div>
+
       </div>
     </div>
   );
