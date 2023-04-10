@@ -1,7 +1,7 @@
 import Layout from '@/components/Layout';
 import products from '@/utils/products';
 import { Rating } from '@mui/material';
-import { Button, Dropdown, Text } from '@nextui-org/react';
+import { Button, Text } from '@nextui-org/react';
 import _ from 'lodash';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -95,7 +95,7 @@ const ProductDetail = () => {
               </Text>
             </div>
 
-            <Button rounded size='lg'>
+            <Button size='lg' css={{ w: '50%' }}>
               Add to Cart
             </Button>
           </div>
@@ -103,15 +103,15 @@ const ProductDetail = () => {
             <div className='border mb-2 p-2 rounded-md flex gap-2 items-start'>
               <CiDeliveryTruck className='text-3xl text-orange-400' />
               <div>
-                <h2 className='text-lg font-bold mb-2'>Free Delivery</h2>
-                <p>Enter your postal code for delivery availability</p>
+                <Text className='text-lg font-bold mb-2'>Free Delivery</Text>
+                <Text>Enter your postal code for delivery availability</Text>
               </div>
             </div>
             <div className='border mb-2 p-2 rounded-md flex gap-2'>
               <TbTruckReturn className='text-3xl text-orange-400' />
               <div>
-                <h2 className='text-lg font-bold mb-2'>Return Delivery</h2>
-                <p>Free 30 days delivery returns.</p>
+                <Text className='text-lg font-bold mb-2'>Return Delivery</Text>
+                <Text>Free 30 days delivery returns.</Text>
               </div>
             </div>
           </div>

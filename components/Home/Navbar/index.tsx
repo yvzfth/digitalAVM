@@ -45,18 +45,20 @@ const Navbar = ({ city }: { city?: string }) => {
           </div>
         </div>
 
-        <div className='flex justify-around w-full'>
-          <CategoriesDropdown />
-          <div className='hidden xl:flex gap-4 items-center'>
-            <Button light auto css={{ px: 10 }}>
-              İndirimli
-            </Button>
-            <Button light auto css={{ px: 10 }}>
-              Yeni Gelenler
-            </Button>
-            <Button light auto css={{ px: 10 }}>
-              Ücretsiz Kargo
-            </Button>
+        <div className='flex justify-between px-0 sm:px-2 md:px-4  w-full'>
+          <div className='flex gap-4'>
+            <CategoriesDropdown />
+            <div className='hidden xl:flex gap-4 items-center'>
+              <Button light auto css={{ px: 10 }}>
+                İndirimli
+              </Button>
+              <Button light auto css={{ px: 10 }}>
+                Yeni Gelenler
+              </Button>
+              <Button light auto css={{ px: 10 }}>
+                Ücretsiz Kargo
+              </Button>
+            </div>
           </div>
           <SearchBar />
         </div>

@@ -88,6 +88,7 @@ function SearchBar() {
         <Input
           aria-label='Ara'
           ref={inputRef}
+          css={{ '@sm': { w: '300px' } }}
           clearable
           contentRightStyling={false}
           placeholder='Search...'
@@ -95,7 +96,7 @@ function SearchBar() {
             <FiSearch
               type='submit'
               onClick={() => router.push('/search?q=' + query)}
-              className='mr-2'
+              className='mr-2 ml-1'
             />
           }
           value={query}

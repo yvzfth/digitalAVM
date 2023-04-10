@@ -21,7 +21,7 @@ export default function MultiActionAreaCard({
     <div className='relative'>
       <Button
         auto
-        // light
+        shadow
         color={'error'}
         className='absolute top-10 left-4 z-20 hover:scale-150 transition-all duration-300 ease-in-out'
         css={{ p: 5, h: 'fit-content' }}
@@ -102,9 +102,9 @@ export default function MultiActionAreaCard({
       <div className='absolute bottom-4 right-4 z-20 transition-all duration-300 ease-in-out'>
         <Button
           auto
-          rounded
+          shadow
           size={'xs'}
-          color={'gradient'}
+          color={'default'}
           css={{ p: 5, h: 'fit-content' }}
           // onClick={() => setLiked((pre) => !pre)}
         >
