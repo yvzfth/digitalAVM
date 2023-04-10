@@ -11,12 +11,12 @@ const Footer = () => {
   return (
     <footer className='border-t bg-slate-50 py-4 mt-8'>
       <div className='flex items-center justify-center mx-auto py-4 lg:hidden'>
-        <img src='logo.svg' alt='' className='h-20' />
+        <img src='/logo.svg' alt='' className='h-20' />
       </div>
       <div className='flex flex-col lg:flex-row lg:justify-between lg:px-10'>
         <div className='flex gap-4 justify-evenly items-start py-4 lg:w-full lg:justify-around'>
           <div className=' hidden lg:flex '>
-            <img src='logo.svg' alt='' className='h-20' />
+            <img src='/logo.svg' alt='' className='h-20' />
           </div>
           <div className='text-center text-gray-600'>
             <div className='font-semibold pb-2'>Kurumsal</div>

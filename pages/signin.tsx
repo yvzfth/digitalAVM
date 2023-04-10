@@ -127,10 +127,10 @@ const SignIn = () => {
       <img className='absolute bottom-0 left-0' src='/a.svg' alt='a' />
       <img className='absolute top-0 right-0' src='/b.svg' alt='b' />
       <div className='flex flex-col justify-center items-center h-screen w-full z-50'>
-        <div className='mx-auto my-2' onClick={() => router.push('/')}>
+        <div className='mx-auto my-2 z-50' onClick={() => router.push('/')}>
           <img src='logo.svg' alt='logo' className='h-20' />
         </div>
-        <form onSubmit={formik?.handleSubmit}>
+        <form onSubmit={formik?.handleSubmit} className='z-50'>
           <div className={'flex flex-col justify-center w-[20rem]'}>
             <div hidden={isSignIn}>
               <div className='flex justify-between'>
