@@ -54,7 +54,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 const Home = (props: any) => {
   return (
     <Layout city={props?.city}>
-      <div>
+      <div className='container mx-auto'>
         <Cards />
         <Products />
         <Grid.Container gap={2} justify='center'>
