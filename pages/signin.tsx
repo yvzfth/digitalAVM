@@ -123,7 +123,10 @@ const SignIn = () => {
     },
   });
   return (
-    <div className='flex flex-col justify-center items-center h-screen w-full'>
+    <div className='relative flex flex-col justify-center items-center h-screen w-full'>
+      <img className='absolute bottom-0 left-0' src='/a.svg' alt='a' />
+      <img className='absolute top-0 right-0' src='/b.svg' alt='b' />
+
       <div className='mx-auto my-2' onClick={() => router.push('/')}>
         <img src='logo.svg' alt='logo' className='h-20' />
       </div>

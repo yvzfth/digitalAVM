@@ -29,20 +29,8 @@ function SearchBar() {
     setSelectedSuggestion(title);
     inputRef.current?.focus();
     setIsFocused(false);
-    // setSelectedIndex(-1);
   }
-  // function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
-  //   if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-  //     event.preventDefault();
-  //     const indexDelta = event.key === 'ArrowDown' ? 1 : -1;
-  //     setSelectedIndex(
-  //       (selectedIndex + indexDelta + filteredProducts.length) %
-  //         filteredProducts.length
-  //     );
-  //   } else if (event.key === 'Enter' && selectedIndex >= 0) {
-  //     setInputValue(filteredProducts[selectedIndex].title);
-  //   }
-  // }
+
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === 'Enter') {
       e.preventDefault();
