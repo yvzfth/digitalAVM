@@ -33,7 +33,7 @@ const SignIn = () => {
       .then((res) => {
         if (res.status === 201) {
           toast.success('Kayıt oluşturdu');
-          router.push('/');
+          setIsSignIn(true);
         }
       });
   };

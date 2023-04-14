@@ -1,14 +1,14 @@
-import Head from 'next/head';
-import Navbar from '@/components/Home/Navbar';
 import Cards from '@/components/Home/Cards';
 import Products from '@/components/Home/Products';
 import Suggest from '@/components/Home/Cards/Suggest';
 import React from 'react';
 import { Grid } from '@nextui-org/react';
-import Footer from '@/components/Home/Footer';
+
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import Layout from '@/components/Layout';
+import Banner from '@/components/Home/Banner';
+import CategoryContainer from '@/components/Home/Cards/CategoryContainer';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const res = await axios
@@ -55,8 +55,10 @@ const Home = (props: any) => {
   return (
     <Layout city={props?.city}>
       <div className='container mx-auto'>
+        <Banner />
         <Cards />
-        <Products />
+        <CategoryContainer />
+        <Products title='International top sellers' />
         <Grid.Container gap={2} justify='center'>
           <Grid xs={12} sm={6}>
             <Suggest />
@@ -65,7 +67,7 @@ const Home = (props: any) => {
             <Suggest />
           </Grid>
         </Grid.Container>
-        <Products />
+        <Products title='New international customers purchased' />
       </div>
     </Layout>
   );
