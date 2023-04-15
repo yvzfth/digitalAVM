@@ -9,6 +9,7 @@ import { CartContext } from '@/context/CartContext';
 
 import { useRouter } from 'next/router';
 import _ from 'lodash';
+import { LikeContext } from '@/context/LikeContext';
 export default function MultiActionAreaCard({
   id,
   title,
@@ -17,13 +18,16 @@ export default function MultiActionAreaCard({
   stock,
   categories,
 }: IProduct) {
-  const [liked, setLiked] = React.useState<boolean>(false);
   const router = useRouter();
   const { data, setData } = React.useContext(CartContext);
+  const { likes, setLikes } = React.useContext(LikeContext);
 
   const handleClick = () => {
     if (!data.some((item) => item === id)) setData([...data, id]);
-    console.log(data);
+  };
+  const handleLike = () => {
+    if (!likes.some((item) => item === id)) setLikes([...likes, id]);
+    else setLikes(likes.filter((like) => like !== id));
   };
   return (
     <div className='relative'>
@@ -33,9 +37,9 @@ export default function MultiActionAreaCard({
         color={'error'}
         className='absolute top-10 left-4 z-20 hover:scale-150 transition-all duration-300 ease-in-out'
         css={{ p: 5, h: 'fit-content' }}
-        onPress={() => setLiked((pre) => !pre)}
+        onPress={handleLike}
       >
-        {!liked ? <BsHeart /> : <BsHeartFill />}
+        {!likes.includes(id) ? <BsHeart /> : <BsHeartFill />}
       </Button>
       <Card
         sx={{
@@ -114,7 +118,7 @@ export default function MultiActionAreaCard({
           size={'xs'}
           color={'default'}
           css={{ p: 5, h: 'fit-content' }}
-          onClick={handleClick}
+          onPress={handleClick}
         >
           Sepete Ekle
         </Button>

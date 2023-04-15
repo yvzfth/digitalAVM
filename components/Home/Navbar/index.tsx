@@ -93,7 +93,7 @@ const Navbar = ({ city }: { city?: string }) => {
                 light
                 auto
                 size={'md'}
-                style={{ margin: '-6px', padding: 0 }}
+                style={{ margin: '-6px', padding: '6px' }}
                 // css={{ px: 4 }}
                 onClick={() => router.push('/cart')}
               >

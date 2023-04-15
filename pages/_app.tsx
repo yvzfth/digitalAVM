@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import { Toaster } from 'react-hot-toast';
 import { SessionProvider } from 'next-auth/react';
 import CartContextProvider from '../context/CartContext';
+import LikeContextProvider from '@/context/LikeContext';
 
 export default function App({
   Component,
@@ -11,9 +12,11 @@ export default function App({
   return (
     <SessionProvider session={session}>
       <Toaster />
-      <CartContextProvider>
-        <Component {...pageProps} />
-      </CartContextProvider>
+      <LikeContextProvider>
+        <CartContextProvider>
+          <Component {...pageProps} />
+        </CartContextProvider>
+      </LikeContextProvider>
     </SessionProvider>
   );
 }

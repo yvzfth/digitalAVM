@@ -2,25 +2,14 @@ import { CartContext } from '@/context/CartContext';
 import products from '@/utils/products';
 import React, { useContext } from 'react';
 
-interface Item {
-  id: number;
-  name: string;
-  price: number;
-}
-
 interface ShoppingCartProps {
-  items: Item[];
-  totalPrice: number;
+  // items: Item[];
+  // totalPrice: number;
   className?: string;
   style?: React.CSSProperties;
 }
 
-function ShoppingCart({
-  items,
-  totalPrice,
-  className,
-  style,
-}: ShoppingCartProps) {
+function ShoppingCart({ className, style }: ShoppingCartProps) {
   const { data, setData } = useContext(CartContext);
   let total = 0;
   return (
@@ -47,14 +36,14 @@ function ShoppingCart({
               </div>
               <div>{product?.title}</div>
             </div>
-            <div>${product?.price}</div>
+            <div>{total.toFixed(2) + '₺'}</div>
           </div>
         );
       })}
       <hr />
       <div className='flex justify-between mt-4'>
         <div>Total:</div>
-        <div className='text-red-600'>${total}</div>
+        <div className='text-red-600'>{total.toFixed(2) + '₺'}</div>
       </div>
     </div>
   );

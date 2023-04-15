@@ -7,16 +7,29 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { CiDeliveryTruck } from 'react-icons/ci';
 import { TbTruckReturn } from 'react-icons/tb';
+import { BsHeart, BsHeartFill } from 'react-icons/bs';
+import { CartContext } from '@/context/CartContext';
+import { LikeContext } from '@/context/LikeContext';
 const ProductDetail = () => {
   const router = useRouter();
   const { slug } = router.query;
   const product = products.find(
     (product) => _.kebabCase(product.title) === slug
   );
-  const [quantity, setQuantity] = React.useState<number>(0);
+  const [quantity, setQuantity] = React.useState<number>(1);
 
-  // ------------ CHANGE BELOW --------------
+  const { data, setData } = React.useContext(CartContext);
+  const { likes, setLikes } = React.useContext(LikeContext);
 
+  const handleClick = () => {
+    if (!data.some((item) => item === product?.id))
+      setData([...data, product?.id!]);
+  };
+  const handleLike = () => {
+    if (!likes.some((item) => item === product?.id))
+      setLikes([...likes, product?.id!]);
+    else setLikes(likes.filter((like) => like !== product?.id));
+  };
   return (
     <Layout>
       <div className='container grid grid-rows-2 lg:grid-cols-2 lg:grid-rows-1 gap-8 mx-auto p-4'>
@@ -30,9 +43,25 @@ const ProductDetail = () => {
         </div>
         <div className='divide-y flex flex-col'>
           <div className='mb-4'>
-            <Text h1 className='text-3xl font-bold mb-4'>
-              {product?.title}
-            </Text>
+            <div className='flex justify-between items-center'>
+              <Text h1 className='text-3xl font-bold mb-4'>
+                {product?.title}
+              </Text>
+              <Button
+                auto
+                shadow
+                color={'error'}
+                className=' z-20 hover:scale-125 transition-all duration-300 ease-in-out'
+                css={{ p: 5, h: 'fit-content' }}
+                onPress={handleLike}
+              >
+                {!likes.includes(product?.id!) ? (
+                  <BsHeart className='text-2xl' />
+                ) : (
+                  <BsHeartFill className='text-2xl' />
+                )}
+              </Button>
+            </div>
             <Text>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
               deserunt autem quia
@@ -50,7 +79,9 @@ const ProductDetail = () => {
           </div>
 
           <div className='py-4'>
-            <Text className='text-2xl font-bold'>{product?.price}₺</Text>
+            <Text className='text-2xl font-bold'>
+              {product?.price.toFixed(2) + '₺'}
+            </Text>
           </div>
 
           <div className='py-4'>
@@ -75,7 +106,7 @@ const ProductDetail = () => {
               <div className='flex '>
                 <button
                   className='rounded-l-full border-l border-t border-b px-4 py-2 bg-slate-100 hover:bg-slate-50'
-                  onClick={() => setQuantity(quantity > 0 ? quantity - 1 : 0)}
+                  onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}
                 >
                   -
                 </button>
@@ -95,7 +126,7 @@ const ProductDetail = () => {
               </Text>
             </div>
 
-            <Button size='lg' css={{ w: '50%' }}>
+            <Button size='lg' css={{ w: '50%' }} onPress={handleClick}>
               Add to Cart
             </Button>
           </div>
