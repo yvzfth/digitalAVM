@@ -1,6 +1,7 @@
 import { Dropdown } from '@nextui-org/react';
-
+import { useRouter } from 'next/router';
 export default function App() {
+  const router = useRouter();
   return (
     <Dropdown>
       <Dropdown.Button
@@ -59,14 +60,26 @@ export default function App() {
         css={{ $$dropdownMenuWidth: '250px' }}
       >
         <Dropdown.Section title='Kategoriler'>
-          <Dropdown.Item key='new' description='800+ ürün <konumunda>'>
-            Anne & Bebek
+          <Dropdown.Item key='mom-and-baby' description='800+ ürün <konumunda>'>
+            <div onClick={() => router.push('/search?c=mom-and-baby')}>
+              Anne & Bebek
+            </div>
           </Dropdown.Item>
-          <Dropdown.Item key='copy' description='1000+ ürün <konumunda>'>
-            Elektronik
+          <Dropdown.Item key='electronics' description='1000+ ürün <konumunda>'>
+            <div onClick={() => router.push('/search?c=electronics')}>
+              Elektronik
+            </div>
           </Dropdown.Item>
-          <Dropdown.Item key='edit' description='2000+ ürün <konumunda>'>
-            Kişisel Bakım
+          <Dropdown.Item
+            key='personal-care'
+            description='2000+ ürün <konumunda>'
+          >
+            <div onClick={() => router.push('/search?c=personal-care')}>
+              Kişisel Bakım
+            </div>
+          </Dropdown.Item>
+          <Dropdown.Item key='grocery' description='5000+ ürün <konumunda>'>
+            <div onClick={() => router.push('/search?c=grocery')}>Market</div>
           </Dropdown.Item>
         </Dropdown.Section>
         <Dropdown.Section title='Markalarımız'>

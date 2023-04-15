@@ -1,9 +1,10 @@
 interface IProduct {
+  id: string;
   title: string;
   img: string;
   price: number;
   stock: number;
-  categoties?: string[];
+  categories?: string[];
 }
 interface ICity {
   city: string;

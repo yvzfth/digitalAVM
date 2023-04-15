@@ -24,11 +24,11 @@ export default function App(props: Props) {
                   src={item.img}
                   objectFit='cover'
                   width='100%'
-                  height={140}
+                  height={160}
                   alt={item.title}
                 />
               </Card.Body>
-              <Card.Footer css={{ justifyItems: 'flex-start' }}>
+              {/* <Card.Footer css={{ justifyItems: 'flex-start' }}>
                 <Row wrap='wrap' justify='space-between' align='center'>
                   <Text b>{item.title}</Text>
                   <Text
@@ -41,7 +41,7 @@ export default function App(props: Props) {
                     {item.price}₺
                   </Text>
                 </Row>
-              </Card.Footer>
+              </Card.Footer> */}
             </Card>
           </div>
         ))}

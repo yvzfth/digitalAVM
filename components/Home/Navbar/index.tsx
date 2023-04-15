@@ -1,20 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import { HiOutlineShoppingBag } from 'react-icons/hi';
 import { IoLogInOutline } from 'react-icons/io5';
 
 import { SlLocationPin } from 'react-icons/sl';
-import { Button, Text } from '@nextui-org/react';
+import { Badge, Button, Text } from '@nextui-org/react';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 
 import AccountButton from './AccountButton';
 import SearchBar from './SearchBar';
 import CategoriesDropdown from './CategoriesDropdown';
+import { CartContext } from '@/context/CartContext';
 const Navbar = ({ city }: { city?: string }) => {
   const session = useSession();
   const router = useRouter();
-
+  const { data, setData } = useContext(CartContext);
   return (
     <div className='border-b p-2 fixed top-0 backdrop-blur-md w-full z-50 bg-white bg-opacity-90 shadow-md'>
       <div className='container flex items-center justify-between mx-auto gap-2 '>
@@ -82,17 +83,23 @@ const Navbar = ({ city }: { city?: string }) => {
             ) : (
               <AccountButton />
             )}
-            <Button
-              rounded
-              light
-              auto
-              size={'md'}
-              style={{ margin: '2px', padding: 0 }}
-              // css={{ px: 4 }}
-              onClick={() => router.push('/cart')}
+            <Badge
+              color='error'
+              content={data.length}
+              isInvisible={data.length <= 0}
             >
-              <HiOutlineShoppingBag className='text-3xl m-1' />
-            </Button>
+              <Button
+                rounded
+                light
+                auto
+                size={'md'}
+                style={{ margin: '-6px', padding: 0 }}
+                // css={{ px: 4 }}
+                onClick={() => router.push('/cart')}
+              >
+                <HiOutlineShoppingBag className='text-3xl' />
+              </Button>
+            </Badge>
           </div>
           {city && (
             <div className='hidden sm:block sm:pl-2'>

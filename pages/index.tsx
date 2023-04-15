@@ -1,6 +1,6 @@
 import Cards from '@/components/Home/Cards';
 import Products from '@/components/Home/Products';
-import Suggest from '@/components/Home/Cards/Suggest';
+import Suggest from '@/components/Home/Cards/SuggestionCard';
 import React from 'react';
 import { Grid } from '@nextui-org/react';
 

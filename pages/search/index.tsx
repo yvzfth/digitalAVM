@@ -1,4 +1,4 @@
-import MultiActionAreaCard from '@/components/Home/Cards/MuiCard';
+import MultiActionAreaCard from '@/components/Home/Cards/Card';
 import Layout from '@/components/Layout';
 import products from '@/utils/products';
 import axios from 'axios';
@@ -51,9 +51,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 const Search = ({ city }: { city: string }) => {
   const router = useRouter();
   const query = router.query;
-  console.log(query.q);
-  const filteredProducts = products.filter((product) =>
-    product.title.toLowerCase().includes(String(query.q).toLowerCase()!)
+
+  const filteredProducts = products.filter(
+    (product) =>
+      product.title.toLowerCase().includes(String(query.q).toLowerCase()!) ||
+      product.categories?.includes(String(query?.c))
   );
   return (
     <Layout city={city}>
@@ -63,6 +65,7 @@ const Search = ({ city }: { city: string }) => {
           {filteredProducts.map((product, index) => (
             <MultiActionAreaCard
               key={index}
+              id={product.id}
               title={product.title}
               img={product.img}
               price={product.price}

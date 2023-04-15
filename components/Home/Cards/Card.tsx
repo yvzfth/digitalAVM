@@ -2,21 +2,29 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-// import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions, Rating } from '@mui/material';
 import { BsHeart, BsHeartFill } from 'react-icons/bs';
 import { Button, Text } from '@nextui-org/react';
-import products from '@/utils/products';
+import { CartContext } from '@/context/CartContext';
+
 import { useRouter } from 'next/router';
 import _ from 'lodash';
 export default function MultiActionAreaCard({
+  id,
   title,
   img,
   price,
   stock,
+  categories,
 }: IProduct) {
   const [liked, setLiked] = React.useState<boolean>(false);
   const router = useRouter();
+  const { data, setData } = React.useContext(CartContext);
+
+  const handleClick = () => {
+    if (!data.some((item) => item === id)) setData([...data, id]);
+    console.log(data);
+  };
   return (
     <div className='relative'>
       <Button
@@ -85,7 +93,7 @@ export default function MultiActionAreaCard({
                 600+ bought in past month
               </Text>
               <Text className='text-xl my-1' color='primary'>
-                {price}₺
+                {price.toFixed(2)}₺
               </Text>
               {stock < 20 && (
                 <Text
@@ -106,7 +114,7 @@ export default function MultiActionAreaCard({
           size={'xs'}
           color={'default'}
           css={{ p: 5, h: 'fit-content' }}
-          // onClick={() => setLiked((pre) => !pre)}
+          onClick={handleClick}
         >
           Sepete Ekle
         </Button>
