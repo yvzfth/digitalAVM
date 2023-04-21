@@ -24,6 +24,8 @@ model User {
 
   // Validation rules
   CategoryModerator CategoryModerator[]
+
+  @@map("user")
 }
 
 model Category {
