@@ -7,16 +7,95 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Users {
-  id          Int       @id @unique @default(autoincrement())
-  name        String?   @db.VarChar(255)
-  family_name String?   @db.VarChar(255)
-  email       String?   @db.VarChar(255)
-  password    String?   @db.VarChar(255)
-  create_time DateTime? @db.DateTime(0)
-  gender      Int?      @db.TinyInt
-  profile_pic Bytes?    @db.Blob
-  last_login  DateTime? @db.DateTime(0)
-  lon         Float?
-  lat         Float?
+model User {
+  id            Int           @id @default(autoincrement())
+  // at            String        @db.VarChar(16)
+  name          String        @db.VarChar(32)
+  lastname      String        @db.VarChar(32)
+  email         String        @unique @db.VarChar(255)
+  password      String        @db.VarChar(255)
+  register_date DateTime      @default(now())
+  role          Role          @default(USER)
+  profilePic    String?       @db.VarChar(150)
+  products      Product[]
+  comments      Comment[]
+  product_likes ProductLike[]
+  comment_likes CommentLike[]
+
+  // Validation rules
+  CategoryModerator CategoryModerator[]
+}
+
+model Category {
+  id                Int                 @id @unique @default(autoincrement())
+  name              String              @unique @db.VarChar(108)
+  Product           Product[]
+  CategoryModerator CategoryModerator[]
+}
+
+model CategoryModerator {
+  category_id Int
+  category    Category @relation(fields: [category_id], references: [id])
+  user_id     Int
+  user        User     @relation(fields: [user_id], references: [id])
+
+  @@unique([user_id, category_id])
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  category_id String
+  category    Category @relation(fields: [category_id], references: [name])
+
+  caption          String
+  description      String
+  thumbnail        String
+  descriptionImage String
+  content          String
+  created_at       DateTime      @default(now())
+  updated_at       DateTime      @updatedAt
+  user_id          Int?
+  rating           Float?
+  price            Float
+  stock            Int
+  user             User?         @relation(fields: [user_id], references: [id])
+  comments         Comment[]
+  likes            ProductLike[]
+}
+
+model ProductLike {
+  id         Int     @id @default(autoincrement())
+  product_id String
+  product    Product @relation(fields: [product_id], references: [id])
+  user_id    Int
+  user       User    @relation(fields: [user_id], references: [id])
+}
+
+model Comment {
+  id         Int           @id @default(autoincrement())
+  message    String        @db.VarChar(255)
+  product_id String
+  post       Product       @relation(fields: [product_id], references: [id])
+  user_id    Int
+  user       User          @relation(fields: [user_id], references: [id])
+  likes      CommentLike[]
+}
+
+model CommentLike {
+  id         Int     @id @default(autoincrement())
+  comment_id Int
+  comment    Comment @relation(fields: [comment_id], references: [id])
+  user_id    Int
+  user       User    @relation(fields: [user_id], references: [id])
+}
+
+enum Role {
+  USER
+  SELLER
+  ADMIN
+}
+
+enum VoteType {
+  UPVOTE
+  DOWNVOTE
 }

@@ -8,7 +8,7 @@ export default async function handler(
   prisma.$connect();
   if (req.method === 'POST') {
     const data = req.body.data;
-    await prisma.users.create({
+    await prisma.user.create({
       data,
     });
     prisma.$disconnect();
@@ -16,7 +16,7 @@ export default async function handler(
   } else if (req.method === 'GET') {
     const data = req.query;
 
-    const users = await prisma.users.findFirst({
+    const users = await prisma.user.findFirst({
       where: {
         // ... provide filter here
         email: String(data?.email),

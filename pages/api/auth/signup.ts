@@ -15,18 +15,18 @@ export default async function handler(
     const data = req.body.data;
 
     // check if user exists
-    const isUserExists = await prisma.users.findFirst({
+    const isUserExists = await prisma.user.findFirst({
       where: { email: String(data?.email)! },
     });
     if (isUserExists)
       return res.status(422).json({ message: 'User Already Exists...!' });
 
     // hash password and add to db
-    await prisma.users
+    await prisma.user
       .create({
         data: {
           name: String(data?.name),
-          family_name: String(data?.family_name),
+          lastname: String(data?.family_name),
           email: String(data?.email),
           password: await hash(String(data?.password), 12),
         },

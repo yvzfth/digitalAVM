@@ -10,9 +10,32 @@ import { TbTruckReturn } from 'react-icons/tb';
 import { BsHeart, BsHeartFill } from 'react-icons/bs';
 import { CartContext } from '@/context/CartContext';
 import { LikeContext } from '@/context/LikeContext';
-const ProductDetail = () => {
+import axios from 'axios';
+import { GetServerSideProps } from 'next';
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  return {
+    props: {
+      id: context.query?.slug,
+    },
+  };
+};
+const ProductDetail = ({ id }: { id: string }) => {
   const router = useRouter();
   const { slug } = router.query;
+
+  const [productDB, setProductDB] = React.useState<IProductDB | null>(null);
+  React.useEffect(() => {
+    async function getProduct() {
+      return await axios
+        .get('/api/product?id=' + id)
+        .then((res) => setProductDB(res.data));
+    }
+
+    getProduct();
+    console.log(productDB);
+  }, [productDB?.id]);
+
   const product = products.find(
     (product) => _.kebabCase(product.title) === slug
   );
@@ -34,18 +57,31 @@ const ProductDetail = () => {
     <Layout>
       <div className='container grid grid-rows-2 lg:grid-cols-2 lg:grid-rows-1 gap-8 mx-auto p-4'>
         <div className=' flex flex-col'>
-          <img src={product?.img} alt='product' className='rounded-md' />
+          <img
+            src={productDB ? productDB?.thumbnail : product?.img}
+            alt='product'
+            className='rounded-md'
+          />
           <div className='flex justify-between py-4 [&_img]:h-[8rem] [&_img]:w-[8rem] [&_img]:rounded-md'>
-            <img src={product?.img} alt='product' className='' />
-            <img src={product?.img} alt='product' />
-            <img src={product?.img} alt='product' />
+            <img
+              src={productDB ? productDB?.thumbnail : product?.img}
+              alt='product'
+            />
+            <img
+              src={productDB ? productDB?.thumbnail : product?.img}
+              alt='product'
+            />
+            <img
+              src={productDB ? productDB?.thumbnail : product?.img}
+              alt='product'
+            />
           </div>
         </div>
         <div className='divide-y flex flex-col'>
           <div className='mb-4'>
             <div className='flex justify-between items-center'>
               <Text h1 className='text-3xl font-bold mb-4'>
-                {product?.title}
+                {productDB ? productDB?.caption : product?.title}
               </Text>
               <Button
                 auto
@@ -63,8 +99,9 @@ const ProductDetail = () => {
               </Button>
             </div>
             <Text>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-              deserunt autem quia
+              {productDB
+                ? productDB?.description
+                : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis deserunt aute m quia'}
             </Text>
             <div className='flex items-center gap-1 pt-2'>
               <Rating
@@ -80,7 +117,10 @@ const ProductDetail = () => {
 
           <div className='py-4'>
             <Text className='text-2xl font-bold'>
-              {product?.price.toFixed(2) + '₺'}
+              {productDB
+                ? productDB?.price.toFixed(2)
+                : product?.price.toFixed(2)}
+              ₺
             </Text>
           </div>
 
@@ -125,10 +165,27 @@ const ProductDetail = () => {
                 miss it!
               </Text>
             </div>
-
-            <Button size='lg' css={{ w: '50%' }} onPress={handleClick}>
-              Add to Cart
-            </Button>
+            <div className='flex gap-4'>
+              <Button
+                rounded
+                auto
+                // size='lg'
+                // css={{ w: '50%' }}
+                onPress={handleClick}
+              >
+                Add to Cart
+              </Button>
+              <Button
+                rounded
+                auto
+                color={'warning'}
+                // size='lg'
+                // css={{ w: '50%' }}
+                onPress={handleClick}
+              >
+                Buy Now
+              </Button>
+            </div>
           </div>
           <div className='py-4'>
             <div className='border mb-2 p-2 rounded-md flex gap-2 items-start'>
