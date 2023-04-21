@@ -22,7 +22,7 @@ export const authOptions = {
         prisma.$connect();
         // check user existance
 
-        const result = await prisma.users.findFirst({
+        const result = await prisma.user.findFirst({
           where: { email: credentials?.email! },
         });
         if (!result) {
@@ -43,7 +43,7 @@ export const authOptions = {
         return {
           id: String(result.id),
           email: result.email,
-          name: result.name + ' ' + result.family_name,
+          name: result.name + ' ' + result.lastname,
         };
       },
       credentials: { email: { type: 'text' }, password: { type: 'text' } },

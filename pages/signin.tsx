@@ -11,7 +11,7 @@ import { useFormik } from 'formik';
 
 const userInitialValues = {
   name: '',
-  family_name: '',
+  lastname: '',
   email: '',
   password: '',
 };
@@ -22,13 +22,13 @@ const SignIn = () => {
 
   const signup = async (
     name: string,
-    family_name: string,
+    lastname: string,
     email: string,
     password: string
   ) => {
     await axios
       .post('/api/auth/signup', {
-        data: { name, family_name, email, password },
+        data: { name, lastname, email, password },
       })
       .then((res) => {
         if (res.status === 201) {
@@ -65,7 +65,7 @@ const SignIn = () => {
     validate(values) {
       const errors: {
         name?: string;
-        family_name?: string;
+        lastname?: string;
         email?: string;
         password?: string;
       } = {};
@@ -88,10 +88,10 @@ const SignIn = () => {
         errors.name = 'Must be 15 characters or less';
       }
 
-      if (!values.family_name) {
-        errors.family_name = 'Required';
-      } else if (values.family_name.length > 20) {
-        errors.family_name = 'Must be 20 characters or less';
+      if (!values.lastname) {
+        errors.lastname = 'Required';
+      } else if (values.lastname.length > 20) {
+        errors.lastname = 'Must be 20 characters or less';
       }
 
       if (!values.email) {
@@ -114,12 +114,7 @@ const SignIn = () => {
     onSubmit: (values) => {
       isSignIn
         ? signin(values.email, values.password)
-        : signup(
-            values.name,
-            values.family_name,
-            values.email,
-            values.password
-          );
+        : signup(values.name, values.lastname, values.email, values.password);
     },
   });
   return (
@@ -155,12 +150,12 @@ const SignIn = () => {
                     className='border rounded-md px-4 py-2 w-[9rem]'
                     type={'text'}
                     required={!isSignIn}
-                    {...formik.getFieldProps('family_name')}
+                    {...formik.getFieldProps('lastname')}
                     placeholder='Soy ismi'
                   />
-                  {formik.touched.family_name && formik.errors.family_name ? (
+                  {formik.touched.lastname && formik.errors.lastname ? (
                     <div className='mx-2 text-rose-500'>
-                      {formik.errors.family_name}
+                      {formik.errors.lastname}
                     </div>
                   ) : null}
                 </div>
