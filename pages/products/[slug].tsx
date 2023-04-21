@@ -24,6 +24,7 @@ const ProductDetail = ({ id }: { id: string }) => {
   const router = useRouter();
   const { slug } = router.query;
 
+  // prisma generate
   const [productDB, setProductDB] = React.useState<IProductDB | null>(null);
   React.useEffect(() => {
     async function getProduct() {
