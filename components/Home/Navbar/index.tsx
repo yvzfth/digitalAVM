@@ -56,8 +56,13 @@ const Navbar = ({ city }: { city?: string }) => {
               <Button light auto css={{ px: 10 }}>
                 Yeni Gelenler
               </Button>
-              <Button light auto css={{ px: 10 }}>
-                Ücretsiz Kargo
+              <Button
+                onClick={() => router.push('/brands')}
+                light
+                auto
+                css={{ px: 10 }}
+              >
+                Popüler Markalar
               </Button>
             </div>
           </div>
