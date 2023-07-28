@@ -1,4 +1,4 @@
-interface IProduct {
+export interface IProduct {
   id: string;
   title: string;
   img: string;
@@ -6,10 +6,10 @@ interface IProduct {
   stock: number;
   categories?: string[];
 }
-interface ICity {
+export interface ICity {
   city: string;
 }
-interface IProductDB {
+export interface IProductDB {
   id: string;
   category_id: string;
   caption: string;

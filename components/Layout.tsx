@@ -1,7 +1,7 @@
-import Footer from './Home/Footer';
+import Footer from './Footer';
 import React, { ReactElement } from 'react';
 import HeadComponent from './HeadComponent';
-import Navbar from './Home/Navbar';
+import Navbar from './Navbar';
 export default function Layout({
   children,
   city,

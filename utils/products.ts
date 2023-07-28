@@ -1,3 +1,4 @@
+import type { IProduct } from '@/types';
 const products: IProduct[] = [
   {
     id: '1',
